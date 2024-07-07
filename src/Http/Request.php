@@ -18,15 +18,15 @@ class Request
     $this->postVars = $_POST ?? [];
     $this->uri = $this->getOnlyUri();
     $this->files = $_FILES ?? [];
-    $this->httpMethod = $_SERVER['REQUEST_METHOD'] ?? '';
+    $this->httpMethod = $_SERVER["REQUEST_METHOD"] ?? "";
   }
 
   private function get_all_headers(): array
   {
     $headers = [];
     foreach ($_SERVER as $key => $value) {
-      if (strpos($key, 'HTTP_') === 0) {
-        $headerName = str_replace('_', '-', strtolower(substr($key, 5)));
+      if (strpos($key, "HTTP_") === 0) {
+        $headerName = str_replace("_", "-", strtolower(substr($key, 5)));
         $headers[$headerName] = $value;
       }
     }
@@ -36,8 +36,8 @@ class Request
 
   private function getOnlyUri(): string
   {
-    $url = parse_url($_SERVER['REQUEST_URI']);
-    return $url['path'];
+    $url = parse_url($_SERVER["REQUEST_URI"]);
+    return $url["path"];
   }
 
   public function getUri(): string
@@ -67,6 +67,6 @@ class Request
 
   public function getFile(string $name)
   {
-    return $this->files['name'] ?? null;
+    return $this->files["name"] ?? null;
   }
 }

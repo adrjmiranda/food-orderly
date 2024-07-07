@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . "/bootstrap.php";
 
-use Src\Controllers\Users\HomeController;
+// Add routes
 
-(new HomeController)->index();
+require_once __DIR__ . "/src/routes/users/main.php";
