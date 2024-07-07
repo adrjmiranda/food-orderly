@@ -1,0 +1,23 @@
+{
+	"name": "adriano/food-orderly",
+	"description": "A simple application for managing food orders. This project is part of my developer portfolio.",
+	"type": "project",
+	"require": {
+		"vlucas/phpdotenv": "^5.6"
+	},
+	"license": "MIT License",
+	"autoload": {
+		"psr-4": {
+			"App\\": "src/"
+		}
+	},
+	"scripts": {
+		"serve": "php -S localhost:8000"
+	},
+	"authors": [
+		{
+			"name": "Adriano Miranda",
+			"email": "adrjmiranda@gmail.com"
+		}
+	]
+}
