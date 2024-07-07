@@ -72,4 +72,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Name: Adriano Miranda
 - Email: adrjmiranda@gmail.com
-- LinkedIn: [ Adriano Miranda](www.linkedin.com/in/adriano-miranda-8a78a22b3)
+- LinkedIn: [ Adriano Miranda](https://www.linkedin.com/in/adriano-miranda-8a78a22b3)
