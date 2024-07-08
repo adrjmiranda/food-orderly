@@ -365,7 +365,7 @@ class Router
 
           $paramsPart = str_replace($staticPart, '', $uri);
 
-          $params = $this->getParametersIfValid($paramsPart, $this->dynamicRoutes[$httpMethod][$staticPart]['dynamic_part']);
+          $params = $this->getParametersIfValid($paramsPart, $this->dynamicRoutes[$httpMethod][$staticPart]['dynamic_part']) ?? [];
         }
       }
 
