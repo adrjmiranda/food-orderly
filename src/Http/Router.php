@@ -80,8 +80,24 @@ class Router
     return $action;
   }
 
+  private function routeHasAlreadyBeenAdded(string $httpMethod, string $staticPart)
+  {
+    return isset($this->staticRoutes[$httpMethod][$staticPart]) || isset($this->dynamicRoutes[$httpMethod][$staticPart]);
+  }
+
   private function addStaticRoute(string $httpMethod, string $uri, string $controller, string $action, array $middlewares = [])
   {
+    $staticPart = $this->handlesStaticPartFormat($uri);
+
+    if ($this->routeHasAlreadyBeenAdded($httpMethod, $staticPart)) {
+      throw new Exception("Server Error", 500);
+    }
+
+    $this->staticRoutes[$httpMethod][$staticPart] = [
+      'controller_namespace' => $controller,
+      'action' => $action,
+      'middlewares' => $middlewares
+    ];
   }
 
   private function handlesDynamicParameterFormat(array $parts)
@@ -165,6 +181,10 @@ class Router
   {
     $dynamicPart = $this->getUriDynamicPart($uri);
     $staticPart = $this->getUriStaticPart($uri);
+
+    if ($this->routeHasAlreadyBeenAdded($httpMethod, $staticPart)) {
+      throw new Exception("Server Error", 500);
+    }
 
     $this->dynamicRoutes[$httpMethod][$staticPart] = [
       'controller_namespace' => $controller,
