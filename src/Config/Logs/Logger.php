@@ -8,18 +8,28 @@ class Logger
   const WARNING = 'WARNING';
   const ERROR = 'ERROR';
 
-  private string $logFile;
-
-  public function __construct(string $logFile)
-  {
-    $this->logFile = $logFile;
-  }
-
   private function log(string $level, string $message): void
   {
     $date = date("Y-m-d H:i:s");
     $logMessage = "[$date] [$level] $message" . PHP_EOL;
-    file_put_contents($this->logFile, $logMessage, FILE_APPEND);
+
+    $logFile = '';
+
+    switch ($level) {
+      case self::INFO:
+        $logFile = __DIR__ . '/../../resources/cache/info.log';
+        break;
+
+      case self::WARNING:
+        $logFile = __DIR__ . '/../../resources/cache/warning.log';
+        break;
+
+      case self::ERROR:
+        $logFile = __DIR__ . '/../../resources/cache/error.log';
+        break;
+    }
+
+    file_put_contents($logFile, $logMessage, FILE_APPEND);
   }
 
   public function info(string $message): void

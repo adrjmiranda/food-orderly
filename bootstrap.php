@@ -8,9 +8,7 @@ use Src\Http\Router;
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$logFile = __DIR__ . "/src/resources/cache/register.log";
-$logger = new Logger($logFile);
-
+$logger = new Logger;
 $logger->info('Application started');
 
 $baseUrl = $_ENV["BASE_URL"];

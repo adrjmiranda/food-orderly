@@ -3,6 +3,7 @@
 namespace Src\Http;
 
 use Exception;
+use Src\Config\Logs\Logger;
 
 define("GET", "GET");
 define("POST", "POST");
