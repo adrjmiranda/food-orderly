@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Helpers\Template;
+namespace Src\Config\Template;
 
 use Exception;
 use Src\Config\Logs\Logger;

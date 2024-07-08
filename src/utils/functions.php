@@ -1,6 +1,7 @@
 <?php
+
 use Src\Config\Logs\Logger;
-use Src\Helpers\Template\View;
+use Src\Config\Template\View;
 
 function view(string $template, array $data = [])
 {

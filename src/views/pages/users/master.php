@@ -1,6 +1,6 @@
 <?php
 /**
- * @var Src\Helpers\Template\View $this
+ * @var Src\Config\Template\View $this
  */
 ?>
 
