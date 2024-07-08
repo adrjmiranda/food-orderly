@@ -3,12 +3,19 @@
 namespace Src\Helpers\Template;
 
 use Exception;
+use Src\Config\Logs\Logger;
 
 class View
 {
   private mixed $masterContent;
   private string $masterTemplate;
   private array $masterData;
+  private Logger $logger;
+
+  public function __construct(Logger $logger)
+  {
+    $this->logger = $logger;
+  }
 
   private function getTemplateFilePath(string $template): ?string
   {

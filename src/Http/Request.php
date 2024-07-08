@@ -2,6 +2,8 @@
 
 namespace Src\Http;
 
+use Src\Config\Logs\Logger;
+
 class Request
 {
   private string $uri;
@@ -10,8 +12,9 @@ class Request
   private array $queryParams;
   private array $postVars;
   private array $files;
+  private Logger $logger;
 
-  public function __construct()
+  public function __construct(Logger $logger)
   {
     $this->headers = $this->get_all_headers();
     $this->queryParams = $_GET ?? [];
@@ -19,6 +22,8 @@ class Request
     $this->uri = $this->getOnlyUri();
     $this->files = $_FILES ?? [];
     $this->httpMethod = $_SERVER["REQUEST_METHOD"] ?? "";
+
+    $this->logger = $logger;
   }
 
   private function get_all_headers(): array

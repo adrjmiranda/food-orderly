@@ -2,11 +2,19 @@
 
 namespace Src\Http;
 
+use Src\Config\Logs\Logger;
+
 class Response
 {
   private array $headers;
   private string $contentType;
   private int $httpCode;
+  private Logger $logger;
+
+  public function __construct(Logger $logger)
+  {
+    $this->logger = $logger;
+  }
 
   private function setContentType(string $contentType)
   {

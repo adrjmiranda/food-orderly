@@ -13,4 +13,4 @@ $logger->info('Application started');
 
 $baseUrl = $_ENV["BASE_URL"];
 
-$router = new Router($baseUrl);
+$router = new Router($baseUrl, $logger);

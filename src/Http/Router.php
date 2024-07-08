@@ -31,13 +31,15 @@ class Router
   private Response $response;
   private array $staticRoutes;
   private array $dynamicRoutes;
+  private Logger $logger;
 
-  public function __construct(string $baseUrl)
+  public function __construct(string $baseUrl, Logger $logger)
   {
     $this->baseUrl = $baseUrl;
+    $this->logger = $logger;
 
-    $this->request = new Request;
-    $this->response = new Response;
+    $this->request = new Request($logger);
+    $this->response = new Response($logger);
 
     $this->staticRoutes = [];
     $this->dynamicRoutes = [];
