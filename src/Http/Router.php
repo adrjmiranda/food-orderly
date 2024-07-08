@@ -131,7 +131,7 @@ class Router
         throw new Exception("Server Error", 500);
       }
 
-      if (!preg_match(Router::PARAM_NAME_PATTERN, $name)) {
+      if (!preg_match(self::PARAM_NAME_PATTERN, $name)) {
         throw new Exception("Server Error", 500);
       }
 
@@ -147,7 +147,7 @@ class Router
 
   private function getUriDynamicPart(string $uri)
   {
-    preg_match_all(Router::PARAMS_PATTERN, $uri, $matches);
+    preg_match_all(self::PARAMS_PATTERN, $uri, $matches);
     $paramList = $this->handlesDynamicParameterFormat($matches[1]);
     $dynamicPart = '/' . implode('/', $paramList);
 
@@ -163,7 +163,7 @@ class Router
 
     if (!empty($parts)) {
       foreach ($parts as $value) {
-        if (!preg_match(Router::URL_STATIC_PARTS_PATTERN, $value)) {
+        if (!preg_match(self::URL_STATIC_PARTS_PATTERN, $value)) {
           throw new Exception("Server Error", 500);
         }
 
@@ -176,7 +176,7 @@ class Router
 
   private function getUriStaticPart(string $uri)
   {
-    preg_match_all(Router::PARAMS_PATTERN, $uri, $matches);
+    preg_match_all(self::PARAMS_PATTERN, $uri, $matches);
     $dynamicPart = '/' . implode('/', $matches[0]);
     $staticPart = str_replace($dynamicPart, '', $uri);
     $staticPart = $this->handlesStaticPartFormat($staticPart);
@@ -224,7 +224,7 @@ class Router
   {
     $uri = $this->handleCompleteUri($uri);
 
-    if (preg_match(Router::PARAMS_PATTERN, $uri)) {
+    if (preg_match(self::PARAMS_PATTERN, $uri)) {
       $this->addDynamicRoute($httpMethod, $uri, $controller, $action, $middlewares);
     } else {
       $this->addStaticRoute($httpMethod, $uri, $controller, $action, $middlewares);
@@ -274,7 +274,7 @@ class Router
     }
 
     for ($i = 0; $i < count($dynamicList); $i++) {
-      preg_match(Router::PARAMS_PATTERN, $dynamicList[$i], $matches);
+      preg_match(self::PARAMS_PATTERN, $dynamicList[$i], $matches);
       [$name, $patternKey] = explode(':', $matches[1]);
 
       if (strpos($patternKey, "%") !== false) {
