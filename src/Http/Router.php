@@ -30,7 +30,6 @@ class Router
   private Response $response;
   private array $staticRoutes;
   private array $dynamicRoutes;
-  private array $params;
 
   public function __construct(string $baseUrl)
   {
@@ -41,8 +40,6 @@ class Router
 
     $this->staticRoutes = [];
     $this->dynamicRoutes = [];
-
-    $this->params = [];
   }
 
   private function httpMethodIsEnabled(string $httpMethod)
@@ -80,9 +77,19 @@ class Router
     return $action;
   }
 
+  private function itIsStaticRoute(string $httpMethod, string $staticPart)
+  {
+    return isset($this->staticRoutes[$httpMethod][$staticPart]);
+  }
+
+  private function itIsDynamicRoute(string $httpMethod, string $staticPart)
+  {
+    return isset($this->dynamicRoutes[$httpMethod][$staticPart]);
+  }
+
   private function routeHasAlreadyBeenAdded(string $httpMethod, string $staticPart)
   {
-    return isset($this->staticRoutes[$httpMethod][$staticPart]) || isset($this->dynamicRoutes[$httpMethod][$staticPart]);
+    return $this->itIsStaticRoute($httpMethod, $staticPart) || $this->itIsDynamicRoute($httpMethod, $staticPart);
   }
 
   private function addStaticRoute(string $httpMethod, string $uri, string $controller, string $action, array $middlewares = [])
@@ -192,6 +199,10 @@ class Router
       'dynamic_part' => $dynamicPart,
       'middlewares' => $middlewares
     ];
+
+    uksort($this->dynamicRoutes[$httpMethod], function ($a, $b) {
+      return strlen($b) - strlen($a);
+    });
   }
 
   private function handleCompleteUri(string $uri)
@@ -220,11 +231,112 @@ class Router
     }
   }
 
-  public function get(string $uri, string $namespace, array $middlewares = [])
+  public function add(string $httpMethod, string $uri, string $namespace, array $middlewares = [])
   {
+    if (!$this->httpMethodIsEnabled($httpMethod)) {
+      throw new Exception("Server Error", 500);
+    }
+
     $controller = $this->getController($namespace);
     $action = $this->getAction($namespace);
 
-    $this->addRoute(GET, $uri, $controller, $action, $middlewares);
+    $this->addRoute($httpMethod, $uri, $controller, $action, $middlewares);
+  }
+
+  private function getDynamicRoute(string $httpMethod, string $uri)
+  {
+    foreach (array_keys($this->dynamicRoutes[$httpMethod]) as $value) {
+      if (strpos($uri, $value) !== false) {
+        return $value;
+      }
+    }
+
+    return null;
+  }
+
+  private function getOnlyNonEmptyParts(string $path): array
+  {
+    $parts = explode('/', $path);
+    $parts = array_filter($parts, fn($n) => $n !== "");
+
+    return array_values($parts);
+  }
+
+  private function getParametersIfValid(string $paramsPart, string $dynamicPart)
+  {
+    $params = [];
+
+    $paramsList = $this->getOnlyNonEmptyParts($paramsPart);
+    $dynamicList = $this->getOnlyNonEmptyParts($dynamicPart);
+
+    if (count($paramsList) > count($dynamicList)) {
+      throw new Exception("Route Not found", 404);
+    }
+
+    for ($i = 0; $i < count($dynamicList); $i++) {
+      preg_match(Router::PARAMS_PATTERN, $dynamicList[$i], $matches);
+      [$name, $patternKey] = explode(':', $matches[1]);
+
+      if (strpos($patternKey, "%") !== false) {
+        if (!isset($paramsList[$i])) {
+          throw new Exception("Route Not found", 404);
+        }
+
+        if (!preg_match($this->patternList[$patternKey], $paramsList[$i])) {
+          throw new Exception("Route Not found", 404);
+        }
+      }
+
+      if (strpos($patternKey, "?") !== false) {
+        if (isset($paramsList[$i])) {
+          if (!preg_match($this->patternList[$patternKey], $paramsList[$i])) {
+            throw new Exception("Route Not found", 404);
+          }
+        }
+      }
+
+      $params[$name] = $paramsList[$i];
+    }
+
+    return $params;
+  }
+
+  public function run()
+  {
+    $uri = $this->request->getUri();
+    $httpMethod = $this->request->getHttpMethod();
+
+    try {
+      if (!$this->httpMethodIsEnabled($httpMethod)) {
+        throw new Exception("Method $httpMethod Not Enabled", 400);
+      }
+
+      $params = [];
+
+      if ($this->itIsStaticRoute($httpMethod, $uri)) {
+        $controllerNamespace = $this->staticRoutes[$httpMethod][$uri]['controller_namespace'];
+        $action = $this->staticRoutes[$httpMethod][$uri]['action'];
+      } else {
+        $staticPart = $this->getDynamicRoute($httpMethod, $uri);
+
+        if (is_null($staticPart)) {
+          throw new Exception("Route $uri Not found", 404);
+        } else {
+          $controllerNamespace = $this->dynamicRoutes[$httpMethod][$staticPart]['controller_namespace'];
+          $action = $this->dynamicRoutes[$httpMethod][$staticPart]['action'];
+
+          $paramsPart = str_replace($staticPart, '', $uri);
+
+          $params = $this->getParametersIfValid($paramsPart, $this->dynamicRoutes[$httpMethod][$staticPart]['dynamic_part']);
+        }
+      }
+
+
+
+      $controllerInstance = new $controllerNamespace();
+      $controllerInstance->$action($this->request, $this->response, $params);
+    } catch (Exception $exception) {
+      //throw $th;
+    }
   }
 }
