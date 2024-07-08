@@ -9,7 +9,7 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 $logger = new Logger;
-$logger->info('Application started');
+$logger->info('Application Started');
 
 $baseUrl = $_ENV["BASE_URL"];
 

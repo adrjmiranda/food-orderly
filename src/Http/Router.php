@@ -4,6 +4,7 @@ namespace Src\Http;
 
 use Exception;
 use Src\Config\Logs\Logger;
+use Src\Http\Middlewares\Queue;
 
 define("GET", "GET");
 define("POST", "POST");
@@ -243,6 +244,18 @@ class Router
     }
   }
 
+  private function verifyAndGetMiddlewares(array $middlewares): ?array
+  {
+    foreach ($middlewares as $middleware) {
+      if (!class_exists($middleware)) {
+        $this->logger->error("Middleware Namespace $middleware Does Not Exist");
+        throw new Exception("Server Error", 500);
+      }
+    }
+
+    return $middlewares;
+  }
+
   public function add(string $httpMethod, string $uri, string $namespace, array $middlewares = [])
   {
     if (!$this->httpMethodIsEnabled($httpMethod)) {
@@ -252,6 +265,8 @@ class Router
 
     $controller = $this->getController($namespace);
     $action = $this->getAction($namespace);
+
+    $middlewares = $this->verifyAndGetMiddlewares($middlewares);
 
     $this->addRoute($httpMethod, $uri, $controller, $action, $middlewares);
   }
@@ -334,6 +349,8 @@ class Router
       if ($this->itIsStaticRoute($httpMethod, $uri)) {
         $controllerNamespace = $this->staticRoutes[$httpMethod][$uri]['controller_namespace'];
         $action = $this->staticRoutes[$httpMethod][$uri]['action'];
+
+        $middlewares = $this->staticRoutes[$httpMethod][$uri]['middlewares'];
       } else {
         $staticPart = $this->getDynamicRoute($httpMethod, $uri);
 
@@ -344,14 +361,16 @@ class Router
           $controllerNamespace = $this->dynamicRoutes[$httpMethod][$staticPart]['controller_namespace'];
           $action = $this->dynamicRoutes[$httpMethod][$staticPart]['action'];
 
+          $middlewares = $this->dynamicRoutes[$httpMethod][$uri]['middlewares'];
+
           $paramsPart = str_replace($staticPart, '', $uri);
 
           $params = $this->getParametersIfValid($paramsPart, $this->dynamicRoutes[$httpMethod][$staticPart]['dynamic_part']);
         }
       }
 
-      $controllerInstance = new $controllerNamespace();
-      $controllerInstance->$action($this->request, $this->response, $params);
+      $queu = new Queue($controllerNamespace, $action, $middlewares, $this->logger);
+      $queu->next($this->request, $this->response, $params);
     } catch (Exception $exception) {
       $this->response->send($exception->getMessage(), $exception->getCode());
     }
