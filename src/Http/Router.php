@@ -63,6 +63,7 @@ class Router
     $controller = explode("@", $namespace)[0];
 
     if (!class_exists($controller)) {
+      $this->logger->error("Controller Namespace $namespace Does Not Exist");
       throw new Exception("Server Error", 500);
     }
 
@@ -74,6 +75,7 @@ class Router
     [$controller, $action] = explode("@", $namespace);
 
     if (!method_exists($controller, $action)) {
+      $this->logger->error("Function $action Does Not Exist In Controller Namespace $namespace");
       throw new Exception("Server Error", 500);
     }
 
@@ -100,6 +102,7 @@ class Router
     $staticPart = $this->handlesStaticPartFormat($uri);
 
     if ($this->routeHasAlreadyBeenAdded($httpMethod, $staticPart)) {
+      $this->logger->error("Static Route $staticPart Has Already Been Added To The Route List");
       throw new Exception("Server Error", 500);
     }
 
@@ -120,6 +123,7 @@ class Router
       [$name, $patternKey] = explode(':', $value);
 
       if (!isset($name) || !isset($patternKey)) {
+        $this->logger->error("Dynamic Route Definition Format Is Incorrect. It Must Be {[param name]:[pattern key]}");
         throw new Exception("Server Error", 500);
       }
 
@@ -131,14 +135,17 @@ class Router
       }
 
       if (strpos($patternKey, "%") !== false && $nonMandatoryParameterAlreadyAdded) {
+        $this->logger->error("It Is Not Allowed To Define A Dynamic Route With A Mandatory Parameter After A Non-Mandatory Parameter");
         throw new Exception("Server Error", 500);
       }
 
       if (!preg_match(self::PARAM_NAME_PATTERN, $name)) {
+        $this->logger->error("Parameter Name Format Is Incorrect");
         throw new Exception("Server Error", 500);
       }
 
       if (!in_array($patternKey, array_keys($this->patternList))) {
+        $this->logger->error("Pattern Key Is Not Defined");
         throw new Exception("Server Error", 500);
       }
 
@@ -167,6 +174,7 @@ class Router
     if (!empty($parts)) {
       foreach ($parts as $value) {
         if (!preg_match(self::URL_STATIC_PARTS_PATTERN, $value)) {
+          $this->logger->error("Static Route Is Outside The Allowed Format");
           throw new Exception("Server Error", 500);
         }
 
@@ -193,6 +201,7 @@ class Router
     $staticPart = $this->getUriStaticPart($uri);
 
     if ($this->routeHasAlreadyBeenAdded($httpMethod, $staticPart)) {
+      $this->logger->error("Static Route $staticPart Has Already Been Added To The Route List");
       throw new Exception("Server Error", 500);
     }
 
@@ -237,6 +246,7 @@ class Router
   public function add(string $httpMethod, string $uri, string $namespace, array $middlewares = [])
   {
     if (!$this->httpMethodIsEnabled($httpMethod)) {
+      $this->logger->error("HTTP $httpMethod Method Is Not Enabled");
       throw new Exception("Server Error", 500);
     }
 
@@ -273,6 +283,7 @@ class Router
     $dynamicList = $this->getOnlyNonEmptyParts($dynamicPart);
 
     if (count($paramsList) > count($dynamicList)) {
+      $this->logger->error("More Parameters Sent Than Expected In Dynamic Route Definition");
       throw new Exception("Route Not found", 404);
     }
 
@@ -282,10 +293,12 @@ class Router
 
       if (strpos($patternKey, "%") !== false) {
         if (!isset($paramsList[$i])) {
+          $this->logger->error("Mandatory Parameter In Dynamic Route Not Received");
           throw new Exception("Route Not found", 404);
         }
 
         if (!preg_match($this->patternList[$patternKey], $paramsList[$i])) {
+          $this->logger->error("Mandatory Parameter Value Does Not Conform To Expected Type In Dynamic Route");
           throw new Exception("Route Not found", 404);
         }
       }
@@ -293,6 +306,7 @@ class Router
       if (strpos($patternKey, "?") !== false) {
         if (isset($paramsList[$i])) {
           if (!preg_match($this->patternList[$patternKey], $paramsList[$i])) {
+            $this->logger->error("Non-Required Parameter Value Does Not Conform To Expected Type In Dynamic Route");
             throw new Exception("Route Not found", 404);
           }
         }
@@ -311,6 +325,7 @@ class Router
 
     try {
       if (!$this->httpMethodIsEnabled($httpMethod)) {
+        $this->logger->error("HTTP $httpMethod Method Sent In Request Not Enabled");
         throw new Exception("Method $httpMethod Not Enabled", 400);
       }
 
@@ -323,6 +338,7 @@ class Router
         $staticPart = $this->getDynamicRoute($httpMethod, $uri);
 
         if (is_null($staticPart)) {
+          $this->logger->error("Request On Route $uri Not Defined");
           throw new Exception("Route $uri Not found", 404);
         } else {
           $controllerNamespace = $this->dynamicRoutes[$httpMethod][$staticPart]['controller_namespace'];
