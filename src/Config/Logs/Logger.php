@@ -17,15 +17,15 @@ class Logger
 
     switch ($level) {
       case self::INFO:
-        $logFile = __DIR__ . '/../../resources/cache/info.log';
+        $logFile = __DIR__ . '/../../resources/logs/info.log';
         break;
 
       case self::WARNING:
-        $logFile = __DIR__ . '/../../resources/cache/warning.log';
+        $logFile = __DIR__ . '/../../resources/logs/warning.log';
         break;
 
       case self::ERROR:
-        $logFile = __DIR__ . '/../../resources/cache/error.log';
+        $logFile = __DIR__ . '/../../resources/logs/error.log';
         break;
     }
 

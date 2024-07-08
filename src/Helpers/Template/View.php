@@ -23,14 +23,16 @@ class View
 
     $validPattern = "/^[a-z-]+$/";
     if (!preg_match($validPattern, $folder) || !preg_match($validPattern, $page)) {
-      throw new Exception("Template $page does not exist");
+      $this->logger->error("Incorrect Template Name");
+      throw new Exception("Server Error", 500);
     }
 
     $filePath = __DIR__ . '/../../views/pages/' . $folder . '/' . $page . '.php';
     if (file_exists($filePath)) {
       return $filePath;
     } else {
-      throw new Exception("Page $page does not exist");
+      $this->logger->error("Page $page.php Does Not Exist");
+      throw new Exception("Server Error", 500);
     }
   }
 
