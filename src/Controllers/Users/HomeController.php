@@ -16,13 +16,13 @@ class HomeController extends Controller
   public function index(Request $request, Response $response, array $params)
   {
     $cacheKey = "home";
-    $cacheData = $this->cached->get($cacheKey);
+    $cacheData = self::$cached->get($cacheKey);
 
     if ($cacheData !== false) {
       $template = $cacheData;
     } else {
       $template = view("users/home");
-      $this->cached->set($cacheKey, $template, 10);
+      self::$cached->set($cacheKey, $template, 10);
     }
 
     $response->send($template, 200);

@@ -7,12 +7,17 @@ use Src\Config\Logs\Logger;
 
 class Controller
 {
-  protected Logger $logger;
-  protected Cached $cached;
+  protected static ?Logger $logger = null;
+  protected static ?Cached $cached = null;
 
   public function __construct()
   {
-    $this->logger = new Logger;
-    $this->cached = new Cached($this->logger);
+    if (is_null(self::$logger)) {
+      self::$logger = new Logger;
+    }
+
+    if (is_null(self::$cached)) {
+      self::$cached = new Cached(self::$logger);
+    }
   }
 }
