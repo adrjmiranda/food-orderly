@@ -9,7 +9,10 @@
 	"autoload": {
 		"psr-4": {
 			"Src\\": "src/"
-		}
+		},
+		"files": [
+			"src/utils/functions.php"
+		]
 	},
 	"scripts": {
 		"serve": "php -S localhost:8000"

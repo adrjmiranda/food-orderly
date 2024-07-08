@@ -331,12 +331,10 @@ class Router
         }
       }
 
-
-
       $controllerInstance = new $controllerNamespace();
       $controllerInstance->$action($this->request, $this->response, $params);
     } catch (Exception $exception) {
-      //throw $th;
+      $this->response->send($exception->getMessage(), $exception->getCode());
     }
   }
 }
