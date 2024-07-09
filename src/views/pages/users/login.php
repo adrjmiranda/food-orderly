@@ -1,0 +1,28 @@
+<?php
+/**
+ * @var Src\Config\Template\View $this
+ */
+
+$this->extend('users/auth-area', [
+  "page_title" => "Login"
+]);
+?>
+
+<h1>Login now</h1>
+<p>It won't be long before you satisfy your hunger!</p>
+
+<form action="#">
+  <div class="input-field">
+    <label for="email">E-mail</label>
+    <input type="email" name="email" id="email" placeholder="Your email">
+  </div>
+
+  <div class="input-field">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" placeholder="Your password">
+  </div>
+
+  <div class="input-field">
+    <button type="submit" class="btn btn-primary">Enter</button>
+  </div>
+</form>

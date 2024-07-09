@@ -16,11 +16,11 @@
       <div class="right-nav">
         <ul class="register-login">
           <li>
-            <a href="/">Create account</a>
+            <a href="/register">Create account</a>
           </li>
 
           <li>
-            <a href="/" class="btn btn-primary">Login</a>
+            <a href="/login" class="btn btn-primary">Login</a>
           </li>
         </ul>
       </div>

@@ -16,7 +16,7 @@ class HomeController extends Controller
 
   public function index(Request $request, Response $response, array $params)
   {
-    $cacheKey = "Src\\Controllers\\HomeController@index";
+    $cacheKey = "Src\\Controllers\\Users\\HomeController@index";
     $cacheData = self::$cached->get($cacheKey);
 
     if ($cacheData !== false) {
@@ -35,7 +35,7 @@ class HomeController extends Controller
 
   public function about(Request $request, Response $response, array $params)
   {
-    $cacheKey = "Src\\Controllers\\HomeController@about";
+    $cacheKey = "Src\\Controllers\\Users\\HomeController@about";
     $cacheData = self::$cached->get($cacheKey);
 
     if ($cacheData !== false) {
@@ -51,7 +51,7 @@ class HomeController extends Controller
 
   public function contact(Request $request, Response $response, array $params)
   {
-    $cacheKey = "Src\\Controllers\\HomeController@contact";
+    $cacheKey = "Src\\Controllers\\Users\\HomeController@contact";
     $cacheData = self::$cached->get($cacheKey);
 
     if ($cacheData !== false) {
