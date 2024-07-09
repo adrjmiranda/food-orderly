@@ -43,3 +43,25 @@
 	color: var(--white);
 	background-color: var(--bright-red);
 }
+
+.form-error {
+	color: var(--bright-red);
+	font-weight: 500;
+	font-size: 0.9rem;
+	text-align: center;
+}
+
+.change-form {
+	font-weight: 300;
+	color: var(--grey);
+	text-align: center;
+}
+
+.change-form a {
+	color: var(--burnt-orange);
+	font-weight: 500;
+}
+
+.change-form a:hover {
+	color: var(--bright-red);
+}
