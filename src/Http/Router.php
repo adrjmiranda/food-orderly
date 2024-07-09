@@ -273,7 +273,7 @@ class Router
 
   private function getDynamicRoute(string $httpMethod, string $uri)
   {
-    foreach (array_keys($this->dynamicRoutes[$httpMethod]) as $value) {
+    foreach (array_keys($this->dynamicRoutes[$httpMethod] ?? []) as $value) {
       if (strpos($uri, $value) !== false) {
         return $value;
       }

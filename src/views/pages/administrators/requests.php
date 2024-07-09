@@ -4,12 +4,14 @@
  */
 
 $this->extend('administrators/master', [
-  "page_title" => "Dashboard"
+  "page_title" => "Requests"
 ]);
 ?>
 
 <div id="dashboard">
   <div class="container">
+    <!-- Session Bar -->
+
     <div class="sessions-bar">
       <ul>
         <li><a href="#">Requests</a></li>
@@ -19,7 +21,9 @@ $this->extend('administrators/master', [
       </ul>
     </div>
 
-    <div class="search-bar">
+    <!-- Search Area -->
+
+    <div class="search-area">
       <form action="#" class="search-form">
         <input type="search" name="search" placeholder="Search for order">
         <button type="submit">
@@ -41,6 +45,8 @@ $this->extend('administrators/master', [
         </button>
       </form>
     </div>
+
+    <!-- Data -->
 
     <div class="data">
       <table>

@@ -21,7 +21,7 @@ class DashboardController extends Controller
     if ($cacheData !== false) {
       $template = $cacheData;
     } else {
-      $template = view("administrators/dashboard");
+      $template = view("administrators/requests");
       // TODO: modify cache time
       self::$cached->set($cacheKey, $template, 0);
     }

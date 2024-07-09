@@ -1,11 +1,16 @@
-<nav>
-  <h1>Requests</h1>
-  <div class="admin-info">
-    <div class="welcome">
-      <span>Welcome</span>
-      <p>Jane Doe</p>
-    </div>
+<nav id="navbar">
+  <div class="container">
+    <div class="content">
+      <h1 class="session-title">Requests</h1>
 
-    <img src="<?= $base_url ?>/assets/img/administrators/avatar.jpg" alt="...">
+      <div class="admin-info">
+        <div class="welcome">
+          <span>Welcome</span>
+          <a href="#">Jane Doe</a>
+        </div>
+
+        <img src="<?= $base_url ?>/assets/img/administrators/avatar.jpg" alt="...">
+      </div>
+    </div>
   </div>
 </nav>

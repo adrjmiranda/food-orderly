@@ -1,1 +1,53 @@
 @import '../global.css';
+
+/* Navbar */
+
+#navbar {
+	padding: 1rem 0;
+}
+
+#navbar .content {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#navbar .session-title {
+	font-family: var(--font-marcellus);
+	color: var(--white);
+	background-color: var(--burnt-orange);
+	padding: 1rem 3rem;
+	border-radius: 3rem;
+}
+
+#navbar .admin-info {
+	display: flex;
+	align-items: flex-end;
+	gap: 1rem;
+}
+
+#navbar .admin-info img {
+	height: 60px;
+	width: 60px;
+	object-fit: cover;
+	border-radius: 50%;
+	border: 2px solid var(--burnt-orange);
+}
+
+#navbar .admin-info .welcome {
+	display: flex;
+	flex-direction: column;
+}
+
+#navbar .admin-info .welcome span {
+	font-size: 0.8rem;
+	font-weight: 200;
+	text-transform: lowercase;
+}
+
+#navbar .admin-info .welcome a {
+	font-weight: bold;
+	color: var(--burnt-orange);
+}
+
+/* Session Bar */
