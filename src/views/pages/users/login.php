@@ -12,6 +12,9 @@ $this->extend('users/auth-area', [
 <p>It won't be long before you satisfy your hunger!</p>
 
 <form action="#">
+  <!-- TODO: fill csrf value -->
+  <input type="hidden" name="csrf" value="">
+
   <div class="input-field">
     <label for="email">E-mail</label>
     <input type="email" name="email" id="email" placeholder="Your email">
