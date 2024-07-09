@@ -8,24 +8,28 @@ $this->extend('users/auth-area', [
 ]);
 ?>
 
-<h1>Login now</h1>
-<p>It won't be long before you satisfy your hunger!</p>
-
-<form action="#">
-  <!-- TODO: fill csrf value -->
-  <input type="hidden" name="csrf" value="">
-
-  <div class="input-field">
-    <label for="email">E-mail</label>
-    <input type="email" name="email" id="email" placeholder="Your email">
+<div id="form-area">
+  <div class="form-header">
+    <h1>Login now</h1>
+    <p>It won't be long before you satisfy your hunger!</p>
   </div>
 
-  <div class="input-field">
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" placeholder="Your password">
-  </div>
+  <form action="#">
+    <!-- TODO: fill csrf value -->
+    <input type="hidden" name="csrf" value="">
 
-  <div class="input-field">
-    <button type="submit" class="btn btn-primary">Enter</button>
-  </div>
-</form>
+    <div class="input-field">
+      <label for="email">E-mail</label>
+      <input type="email" name="email" id="email" placeholder="Your email">
+    </div>
+
+    <div class="input-field">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" placeholder="Your password">
+    </div>
+
+    <div class="input-field">
+      <button type="submit" class="btn btn-primary">Enter</button>
+    </div>
+  </form>
+</div>

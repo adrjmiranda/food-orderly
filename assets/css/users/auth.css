@@ -1,1 +1,93 @@
 @import '../global.css';
+
+#auth-area {
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+#auth-area nav {
+	height: 80px;
+	display: flex;
+	align-items: center;
+	padding: 0 0.5rem;
+}
+
+#auth-area .container {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+#auth-area .content {
+	display: flex;
+	align-items: center;
+	flex: 1;
+	gap: 10%;
+}
+
+#auth-area .content img {
+	flex: 50%;
+	width: 100%;
+}
+
+#form-area {
+	display: flex;
+	flex-direction: column;
+	flex: 50%;
+	background-color: var(--white);
+	padding: 2rem;
+	border-radius: 0.3rem;
+	box-shadow: 1px 1px 15px 5px rgba(0, 0, 0, 0.1);
+}
+
+#form-area .form-header {
+	text-align: center;
+	margin-bottom: 2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+#form-area .form-header h1 {
+	font-family: var(--font-marcellus);
+	font-weight: 500;
+}
+
+#form-area .form-header p {
+	font-weight: bold;
+	color: var(--dark-teal);
+}
+
+#form-area form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+#form-area .input-field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+#form-area .input-field label {
+	font-size: 0.9rem;
+	color: var(--grey);
+	font-weight: 500;
+}
+
+#form-area .input-field input {
+	background-color: var(--soft-gray);
+	padding: 0.5rem;
+	border-radius: 0.3rem;
+	border: 1px solid var(--soft-gray);
+}
+
+#form-area .input-field input:focus {
+	border-color: var(--grey);
+}

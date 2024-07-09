@@ -12,6 +12,9 @@
 	--grey: #333;
 	--soft-gray: rgba(0, 0, 0, 0.03);
 	--white: #fff;
+
+	--font-libre-frank: 'Libre Franklin', sans-serif;
+	--font-marcellus: 'Marcellus', serif;
 }
 
 .container {

@@ -25,20 +25,20 @@
 </head>
 
 <body>
-  <div id="content">
+  <div id="auth-area" style="background-image: url('<?= $base_url ?>/assets/img/auth-bg.png');">
     <!-- Nav -->
 
     <nav>
-      <a href="/">
+      <a href="/" class="logo">
         <img src="<?= $base_url ?>/assets/img/logo.png" alt="Logo">
       </a>
     </nav>
 
     <div class="container">
-      <div class="inner">
+      <div class="content">
         <!-- Illustration -->
 
-        <img src="<?= $base_url ?>/assets/img/shop.png" alt="Shop Image">
+        <img src="<?= $base_url ?>/assets/img/shop.png" alt="Shop Image" loading="eager">
 
         <!-- Form -->
 
