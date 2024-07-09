@@ -9,10 +9,12 @@
 
 a {
 	text-decoration: none;
+	color: var(--black);
 }
 
 ul {
 	list-style: none;
+	display: flex;
 }
 
 input,
@@ -21,9 +23,18 @@ select,
 button {
 	border: none;
 	background-color: transparent;
+	outline: none;
+	border-radius: 0.3rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+	font-weight: 300;
+	color: var(--grey);
 }
 
 a,
 button {
 	transition: all 0.3s ease-in-out;
+	cursor: pointer;
 }

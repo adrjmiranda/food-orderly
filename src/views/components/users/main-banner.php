@@ -1,4 +1,4 @@
-<div id="main-banner">
+<div id="main-banner" style="background-image: url('<?= $base_url ?>/assets/img/main-banner.png');">
   <div class="container">
     <div class="content">
       <div class="banner-header">
@@ -7,8 +7,9 @@
       </div>
 
       <form action="#">
+        <i class="fa-solid fa-magnifying-glass"></i>
         <input type="search" name="search" placeholder="Do you have what hunger?">
-        <button type=" submit">Search</button>
+        <button type="submit" class="btn btn-primary">Search</button>
       </form>
     </div>
   </div>
