@@ -79,9 +79,9 @@
 
 #main-banner .banner-header p {
 	font-size: 1rem;
-	font-weight: bold;
-	color: var(--dark-teal);
-	text-transform: uppercase;
+	font-weight: 500;
+	color: var(--black);
+	text-transform: lowercase;
 }
 
 #main-banner form {
@@ -101,6 +101,50 @@
 	color: var(--bright-red);
 	left: 0.7rem;
 	font-size: 1.1rem;
+}
+
+/* Categories Bar */
+
+#categories-bar {
+	margin: 3rem 0;
+}
+
+#categories-bar .categories {
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+#categories-bar .categories a {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+#categories-bar .categories a img {
+	height: 80px;
+	width: 80px;
+	object-fit: cover;
+	border-radius: 50%;
+	filter: drop-shadow(1px 1px 15px #2225);
+	transition: all 0.2s ease-in-out;
+}
+
+#categories-bar .categories a.active img {
+	padding: 0.1rem;
+	border: 3px solid var(--teal);
+}
+
+#categories-bar .categories a:hover img {
+	transform: scale(1.1);
+}
+
+#categories-bar .categories a span {
+	font-weight: 600;
+	text-transform: capitalize;
+	color: var(--dark-teal);
+	font-size: 1rem;
 }
 
 /* Footer */
