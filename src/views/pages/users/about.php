@@ -4,7 +4,7 @@
  */
 
 $this->extend('users/master', [
-  "page_title" => "Home"
+  "page_title" => "About"
 ]);
 ?>
 
@@ -16,6 +16,4 @@ $this->extend('users/master', [
 
 <?php require_once __DIR__ . "/../../components/users/categories-bar.php"; ?>
 
-<!-- All Dishes -->
-
-<!-- TODO -->
+<h1>About</h1>

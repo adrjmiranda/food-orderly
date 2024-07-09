@@ -10,7 +10,7 @@ use Src\Config\Logs\Logger;
 
 class Model
 {
-  protected ?PDO $pdo;
+  protected static ?PDO $pdo;
   private string $tableName;
   protected static ?Logger $logger = null;
 
@@ -32,7 +32,7 @@ class Model
 
   public function all(string $ordering = 'DESC', int $limit = 0): ?array
   {
-    $query = "SELECT * FROM $this->tableName ORDER BY $ordering";
+    $query = "SELECT * FROM $this->tableName ORDER BY id $ordering";
 
     if ($limit > 0) {
       $query .= " LIMIT $limit";

@@ -13,3 +13,8 @@ composer.phar
 
 **/resources/cache/*
 **/resources/logs/*
+
+# User images
+
+**/img/users/*
+**/img/administrators/*

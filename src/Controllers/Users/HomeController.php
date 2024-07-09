@@ -5,6 +5,7 @@ namespace Src\Controllers\Users;
 use Src\Controllers\Controller;
 use Src\Http\Request;
 use Src\Http\Response;
+use Src\Models\CategoryModel;
 
 class HomeController extends Controller
 {
@@ -15,14 +16,50 @@ class HomeController extends Controller
 
   public function index(Request $request, Response $response, array $params)
   {
-    $cacheKey = "home";
+    $cacheKey = "Src\\Controllers\\HomeController@index";
     $cacheData = self::$cached->get($cacheKey);
 
     if ($cacheData !== false) {
       $template = $cacheData;
     } else {
-      $template = view("users/home");
-      self::$cached->set($cacheKey, $template, 10);
+      $categories = (new CategoryModel)->all();
+      $data['categories'] = $categories;
+
+      $template = view("users/home", $data);
+      // TODO: modify cache time
+      self::$cached->set($cacheKey, $template, 0);
+    }
+
+    $response->send($template, 200);
+  }
+
+  public function about(Request $request, Response $response, array $params)
+  {
+    $cacheKey = "Src\\Controllers\\HomeController@about";
+    $cacheData = self::$cached->get($cacheKey);
+
+    if ($cacheData !== false) {
+      $template = $cacheData;
+    } else {
+      $template = view("users/about");
+      // TODO: modify cache time
+      self::$cached->set($cacheKey, $template, 0);
+    }
+
+    $response->send($template, 200);
+  }
+
+  public function contact(Request $request, Response $response, array $params)
+  {
+    $cacheKey = "Src\\Controllers\\HomeController@contact";
+    $cacheData = self::$cached->get($cacheKey);
+
+    if ($cacheData !== false) {
+      $template = $cacheData;
+    } else {
+      $template = view("users/contact");
+      // TODO: modify cache time
+      self::$cached->set($cacheKey, $template, 0);
     }
 
     $response->send($template, 200);
