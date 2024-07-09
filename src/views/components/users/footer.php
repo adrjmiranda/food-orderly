@@ -28,16 +28,16 @@
         <h4>Social</h4>
 
         <ul class="menu">
-          <li><a href="/"><i class="fa-brands fa-facebook-f"></i></a></li>
-          <li><a href="/"><i class="fa-brands fa-x-twitter"></i></a></li>
-          <li><a href="/"><i class="fa-brands fa-youtube"></i></a></li>
-          <li><a href="/"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a href="/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+          <li><a href="/" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+          <li><a href="/" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+          <li><a href="/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
         </ul>
       </div>
     </div>
 
     <div class="bottom">
-      <p>FoodOrderly &copy; 2024 by <span>Adriano Miranda</span></p>
+      <p>FoodOrderly <span>&copy; 2024</span> by <span>Adriano Miranda</span></p>
 
       <ul>
         <li><a href="/">Terms and conditions of use</a></li>
