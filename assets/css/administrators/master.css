@@ -162,7 +162,7 @@
 /* Data */
 
 #data {
-	margin-top: 1rem;
+	margin: 1rem 0;
 	padding: 2rem;
 	border-radius: var(--larger-br);
 	box-shadow: var(--light-shadow);
@@ -201,6 +201,7 @@
 	box-shadow: var(--light-shadow);
 	padding: 1rem;
 	border-radius: var(--larger-br);
+	text-transform: capitalize;
 }
 
 #data tr,
@@ -241,6 +242,12 @@
 	border-radius: var(--larger-br);
 }
 
+#data td:last-child {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
 /* Data Form */
 
 #data-form {
@@ -249,7 +256,7 @@
 	flex-wrap: wrap;
 	box-shadow: var(--light-shadow);
 	border-radius: var(--larger-br);
-	margin-top: 1rem;
+	margin: 1rem 0;
 	padding: 2rem;
 }
 

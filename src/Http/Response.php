@@ -53,4 +53,13 @@ class Response
         exit;
     }
   }
+
+  public function redirect(string $uri): never
+  {
+    $base_url = $_ENV["BASE_URL"];
+    $url = $base_url . $uri;
+
+    header("location: " . $url);
+    exit;
+  }
 }

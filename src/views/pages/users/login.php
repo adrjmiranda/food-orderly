@@ -22,8 +22,8 @@ $this->extend('users/auth-area', [
       <label for="email">E-mail</label>
       <input type="email" name="email" id="email" placeholder="Your email">
 
-      <?php if (!empty($error->email)): ?>
-        <p class="form-error"><?= $error->email ?></p>
+      <?php if (isset($errors["email"])): ?>
+        <p class="form-error"><?= $errors["email"] ?></p>
       <?php endif; ?>
     </div>
 
@@ -31,8 +31,8 @@ $this->extend('users/auth-area', [
       <label for="password">Password</label>
       <input type="password" name="password" id="password" placeholder="Your password">
 
-      <?php if (!empty($error->password)): ?>
-        <p class="form-error"><?= $error->password ?></p>
+      <?php if (isset($errors["password"])): ?>
+        <p class="form-error"><?= $errors["password"] ?></p>
       <?php endif; ?>
     </div>
 

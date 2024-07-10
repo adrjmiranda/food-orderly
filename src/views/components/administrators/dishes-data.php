@@ -3,45 +3,47 @@
     <thead>
       <tr>
         <th>Id</th>
-        <th>Customer</th>
-        <th>Time</th>
-        <th>Amount</th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Category</th>
+        <th>Price</th>
         <th>Actions</th>
       </tr>
     </thead>
 
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>John Doe</td>
-        <td>August 2, 2022</td>
-        <td>$ 58.69</td>
-        <td>
-          <form action="#">
-            <select name="action">
-              <option value="production">production</option>
-              <option value="sent">sent</option>
-              <option value="delivered">delivered</option>
-            </select>
-          </form>
-        </td>
-      </tr>
+      <?php foreach ($items as $dish): ?>
+        <tr>
+          <td><?= $dish->id ?></td>
+          <td><?= $dish->name ?></td>
+          <td><?= (new DateTime($dish->updated_at))->format('F jS, Y') ?></td>
+          <td>
+            <?php foreach ($categories as $category): ?>
+              <?php if ($category->id === $dish->category_id): ?>
+                <?= $category->name ?>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          </td>
+          <td>
+            $ <?= $dish->price ?>
+          </td>
+          <td>
+            <form action="#">
+              <input type="hidden" name="id" value="<?= $dish->id ?>">
+              <button type="submit">
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+            </form>
 
-      <tr>
-        <td>2</td>
-        <td>John Doe</td>
-        <td>August 2, 2022</td>
-        <td>$ 58.69</td>
-        <td>
-          <form action="#">
-            <select name="action">
-              <option value="production">production</option>
-              <option value="sent">sent</option>
-              <option value="delivered">delivered</option>
-            </select>
-          </form>
-        </td>
-      </tr>
+            <form action="#">
+              <input type="hidden" name="id" value="<?= $dish->id ?>">
+              <button type="submit">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </form>
+          </td>
+        </tr>
+      <?php endforeach; ?>
     </tbody>
   </table>
 </div>

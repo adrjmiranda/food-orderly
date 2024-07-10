@@ -11,6 +11,7 @@ class DishModel extends Model
   public string $image_name;
   public string $description;
   public float $price;
+  public int $category_id;
   public string $created_at;
   public string $updated_at;
 

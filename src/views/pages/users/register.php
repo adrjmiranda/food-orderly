@@ -22,8 +22,8 @@ $this->extend('users/auth-area', [
       <label for="first-name">First name</label>
       <input type="text" name="first_name" id="first-name" placeholder="Your first name">
 
-      <?php if (!empty($error->first_name)): ?>
-        <p class="form-error"><?= $error->first_name ?></p>
+      <?php if (isset($errors["first_name"])): ?>
+        <p class="form-error"><?= $errors["first_name"] ?></p>
       <?php endif; ?>
     </div>
 
@@ -31,8 +31,8 @@ $this->extend('users/auth-area', [
       <label for="last-name">Last name</label>
       <input type="text" name="last_name" id="last-name" placeholder="Your last name">
 
-      <?php if (!empty($error->last_name)): ?>
-        <p class="form-error"><?= $error->last_name ?></p>
+      <?php if (isset($errors["last_name"])): ?>
+        <p class="form-error"><?= $errors["last_name"] ?></p>
       <?php endif; ?>
     </div>
 
@@ -40,8 +40,8 @@ $this->extend('users/auth-area', [
       <label for="email">E-mail</label>
       <input type="email" name="email" id="email" placeholder="Your email">
 
-      <?php if (!empty($error->email)): ?>
-        <p class="form-error"><?= $error->email ?></p>
+      <?php if (isset($errors["email"])): ?>
+        <p class="form-error"><?= $errors["email"] ?></p>
       <?php endif; ?>
     </div>
 
@@ -49,8 +49,8 @@ $this->extend('users/auth-area', [
       <label for="password">Password</label>
       <input type="password" name="password" id="password" placeholder="Your password">
 
-      <?php if (!empty($error->password)): ?>
-        <p class="form-error"><?= $error->password ?></p>
+      <?php if (isset($errors["password"])): ?>
+        <p class="form-error"><?= $errors["password"] ?></p>
       <?php endif; ?>
     </div>
 
@@ -58,8 +58,8 @@ $this->extend('users/auth-area', [
       <label for="password-confirmation">Password confirmation</label>
       <input type="password" name="password_confirmation" id="password-confirmation" placeholder="Your password again">
 
-      <?php if (!empty($error->password_confirmation)): ?>
-        <p class="form-error"><?= $error->password_confirmation ?></p>
+      <?php if (isset($errors["password_confirmation"])): ?>
+        <p class="form-error"><?= $errors["password_confirmation"] ?></p>
       <?php endif; ?>
     </div>
 

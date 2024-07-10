@@ -20,36 +20,42 @@ class DashboardController extends Controller
   private function getSessionData(string $session)
   {
     $entity = null;
+    $fields = [];
 
     switch ($session) {
       case "orders":
         $entity = new OrderModel;
+        $fields = ["id", "amount", "status", "customers_first_name", "customers_last_name"];
         break;
 
       case "users":
         $entity = new UserModel;
+        $fields = ["id", "first_name", "last_name", "email"];
         break;
 
       case "dishes":
         $entity = new DishModel;
+        $fields = ["id", "name", "price", "category_id", "updated_at"];
         break;
 
-      case "new-dish":
-        $entity = new CategoryModel;
-        break;
+      default:
+        return [];
     }
 
-    $items = $entity->all() ?? [];
+    $items = $entity->findSpecificFields($fields) ?? [];
     return $items;
   }
 
-  public function index(Request $request, Response $response, array $params)
+  public function index(Request $request, Response $response, array $params, array $data = [])
   {
     $session = $params["session"] ?? "";
     $data["session"] = $session;
     $data["session_title"] = ucwords(str_replace("-", " ", $session));
 
+    $categories = (new CategoryModel)->all();
+
     $data["items"] = $this->getSessionData($session);
+    $data["categories"] = $categories;
 
     $template = view("administrators/$session", $data);
     $response->send($template, 200);

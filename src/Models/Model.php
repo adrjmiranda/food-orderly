@@ -30,7 +30,7 @@ class Model
     throw new Exception("Server Error", 500);
   }
 
-  public function all(string $ordering = 'DESC', int $limit = 0): ?array
+  public function all(string $ordering = "DESC", int $limit = 0): ?array
   {
     $query = "SELECT * FROM $this->tableName ORDER BY id $ordering";
 
@@ -140,11 +140,11 @@ class Model
   private function removeUselessKeysInStore(array $data): array
   {
     foreach ($data as $key => $value) {
-      if (strpos($key, 'App\Models') !== false || $key === 'id') {
+      if (strpos($key, "Src\Models") !== false || $key === "id") {
         unset($data[$key]);
       }
 
-      if (strpos($key, 'pdo') !== false) {
+      if (strpos($key, "pdo") !== false) {
         unset($data[$key]);
       }
     }
@@ -155,11 +155,11 @@ class Model
   private function removeUselessKeysInUpdate(array $data): array
   {
     foreach ($data as $key => $value) {
-      if (strpos($key, 'App\Models') !== false) {
+      if (strpos($key, "Src\Models") !== false) {
         unset($data[$key]);
       }
 
-      if (strpos($key, 'pdo') !== false) {
+      if (strpos($key, "pdo") !== false) {
         unset($data[$key]);
       }
     }
@@ -180,23 +180,23 @@ class Model
       $query .= "$column, ";
     }
     $query = substr($query, 0, -2);
-    $query .= ') VALUES (';
+    $query .= ") VALUES (";
 
     foreach ($columns as $column) {
       $query .= ":$column, ";
     }
     $query = substr($query, 0, -2);
-    $query .= ')';
+    $query .= ")";
 
     try {
-      $stmt = $this->pdo->prepare($query);
+      $stmt = self::$pdo->prepare($query);
       foreach ($data as $column => $value) {
         $stmt->bindValue(":$column", $value);
       }
 
       $stmt->execute();
 
-      return $this->pdo->lastInsertId();
+      return self::$pdo->lastInsertId();
     } catch (PDOException $pDOException) {
       $this->handleException($pDOException->getMessage());
     }
@@ -212,7 +212,7 @@ class Model
 
     $query = "UPDATE $this->tableName SET ";
     foreach ($columns as $column) {
-      if ($column !== 'id') {
+      if ($column !== "id") {
         $query .= "$column = :$column, ";
       }
     }
@@ -220,13 +220,13 @@ class Model
     $query .= " WHERE id = :id";
 
     try {
-      $stmt = $this->pdo->prepare($query);
+      $stmt = self::$pdo->prepare($query);
       foreach ($data as $column => $value) {
-        if ($column !== 'id') {
+        if ($column !== "id") {
           $stmt->bindValue(":$column", $value);
         }
       }
-      $stmt->bindParam(':id', $data['id'], PDO::PARAM_INT);
+      $stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
 
       return $stmt->execute();
     } catch (PDOException $pDOException) {
@@ -239,12 +239,12 @@ class Model
     $data = (array) $this;
 
     try {
-      $id = $data['id'];
+      $id = $data["id"];
 
       $query = "DELETE FROM $this->tableName WHERE id = :id";
 
-      $stmt = $this->pdo->prepare($query);
-      $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+      $stmt = self::$pdo->prepare($query);
+      $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
       return $stmt->execute();
     } catch (PDOException $pDOException) {

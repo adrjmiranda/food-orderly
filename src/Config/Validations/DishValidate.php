@@ -16,7 +16,7 @@ class DishValidate
 
   private function isValidImageSize(int $size): bool
   {
-    return $size <= self::IMAGE_MAX_SIZE;
+    return $size > 0 && $size <= self::IMAGE_MAX_SIZE;
   }
 
   private function isValidName(string $name): bool
@@ -51,9 +51,9 @@ class DishValidate
           $extension = $data["image_file"]["extension"];
 
           if (!$this->isValidImageExtension($extension)) {
-            $error["image_file"] = "Only jpg, jpeg or png images";
+            $errors["image_file"] = "Only jpg, jpeg or png images";
           } else if (!$this->isValidImageSize($size)) {
-            $error["image_file"] = "Only images up to " . self::IMAGE_MAX_SIZE . " bytes allowed";
+            $errors["image_file"] = "Only images up to " . self::IMAGE_MAX_SIZE . " bytes allowed";
           }
 
 
@@ -61,28 +61,28 @@ class DishValidate
 
         case "name":
           if (!$this->isValidName($value)) {
-            $error["name"] = "Only letters, numbers, spaces and hyphens";
+            $errors["name"] = "Only letters, numbers, spaces and hyphens";
           }
 
           break;
 
         case "description":
           if (!$this->isValidDescription($value)) {
-            $error["description"] = "Only valid texts up to 255 characters";
+            $errors["description"] = "Only valid texts up to 255 characters";
           }
 
           break;
 
         case "price":
           if (!$this->isValidPrice($value)) {
-            $error["price"] = "Only valid price values allowed";
+            $errors["price"] = "Only valid price values allowed";
           }
 
           break;
 
         case "category":
           if (!$this->isValidCategory($value)) {
-            $error["category"] = "Invalid category";
+            $errors["category"] = "Invalid category";
           }
 
           break;
