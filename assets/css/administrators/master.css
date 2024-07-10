@@ -10,28 +10,39 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	gap: 1rem;
 }
 
 #navbar .session-title {
 	font-family: var(--font-marcellus);
 	color: var(--white);
-	background-color: var(--burnt-orange);
-	padding: 1rem 3rem;
-	border-radius: 3rem;
+	background-image: linear-gradient(
+		to right,
+		var(--bright-red),
+		var(--burnt-orange)
+	);
+	padding: 1.55rem 3rem;
+	border-radius: var(--larger-br);
+	flex: 1;
+	box-shadow: var(--light-shadow);
 }
 
 #navbar .admin-info {
 	display: flex;
-	align-items: flex-end;
+	align-items: center;
 	gap: 1rem;
+	box-shadow: var(--light-shadow);
+	border-radius: var(--larger-br);
+	padding: 1rem 3rem;
 }
 
 #navbar .admin-info img {
-	height: 60px;
-	width: 60px;
+	height: 50px;
+	width: 50px;
 	object-fit: cover;
 	border-radius: 50%;
 	border: 2px solid var(--burnt-orange);
+	box-shadow: var(--light-shadow);
 }
 
 #navbar .admin-info .welcome {
@@ -45,9 +56,186 @@
 	text-transform: lowercase;
 }
 
-#navbar .admin-info .welcome a {
+#navbar .admin-info .welcome .name {
 	font-weight: bold;
 	color: var(--burnt-orange);
+	font-size: 1.2rem;
+}
+
+#navbar .admin-info .welcome .name:hover {
+	color: var(--bright-red);
 }
 
 /* Session Bar */
+
+#session-bar ul {
+	width: 100%;
+	height: auto;
+	align-items: center;
+	gap: 1rem;
+	background-color: var(--white);
+	padding: 2rem;
+	border-radius: var(--larger-br);
+	box-shadow: var(--light-shadow);
+	font-weight: bold;
+}
+
+#session-bar ul li a {
+	color: var(--burnt-orange);
+	padding: 1rem;
+	border-radius: var(--larger-br);
+	box-shadow: var(--light-shadow);
+}
+
+#session-bar ul li a:hover,
+#session-bar ul li a.active {
+	color: var(--white);
+	background-color: var(--bright-red);
+}
+
+/* Search Area */
+
+#search-area {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 2rem;
+	margin-top: 1rem;
+	box-shadow: var(--light-shadow);
+	border-radius: var(--larger-br);
+	background-color: var(--white);
+}
+
+#search-area .search-form {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+}
+
+#search-area .search-form input {
+	background-color: var(--white);
+	border-radius: var(--larger-br);
+	padding: 1rem 2.5rem 1rem 1rem;
+	flex: 1;
+	border: 1px solid transparent;
+	box-shadow: var(--light-shadow);
+}
+
+#search-area .search-form input:focus {
+	border-color: var(--soft-gray);
+}
+
+#search-area .search-form button {
+	position: absolute;
+	right: 1rem;
+	top: 1rem;
+	color: var(--burnt-orange);
+}
+
+#search-area .order-form {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+#search-area .order-form select {
+	padding: 1rem;
+	border-radius: var(--larger-br);
+	background-color: var(--white);
+	box-shadow: var(--light-shadow);
+}
+
+#search-area .order-form button {
+	background-color: var(--burnt-orange);
+	padding: 1rem;
+	border-radius: 50%;
+	color: var(--white);
+	box-shadow: var(--light-shadow);
+}
+
+#search-area .order-form button:hover i {
+	transform: rotate(180deg);
+	transition: all 0.3s ease-in-out;
+}
+
+/* Data */
+
+#data {
+	margin-top: 1rem;
+	padding: 2rem;
+	border-radius: var(--larger-br);
+	box-shadow: var(--light-shadow);
+}
+
+#data table {
+	width: 100%;
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+#data thead {
+	background-image: linear-gradient(
+		to right,
+		var(--bright-red),
+		var(--burnt-orange)
+	);
+	border-radius: var(--larger-br);
+	color: var(--white);
+}
+
+#data thead,
+#data tbody {
+	display: flex;
+	flex: 1;
+}
+
+#data tbody {
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+#data tr {
+	box-shadow: var(--light-shadow);
+	padding: 1rem;
+	border-radius: var(--larger-br);
+}
+
+#data tr,
+#data th,
+#data td {
+	display: flex;
+	flex: 1;
+	align-items: center;
+}
+
+#data th {
+	font-weight: 400;
+	text-transform: capitalize;
+}
+
+#data th:nth-child(1) {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#data tbody tr {
+	background-color: var(--white);
+	padding: 0.8rem 1rem;
+}
+
+#data tbody tr:hover {
+	transform: scale(1.02);
+}
+
+#data td:nth-child(1) {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#data td form {
+	box-shadow: var(--light-shadow);
+	padding: 0.5rem;
+	border-radius: var(--larger-br);
+}

@@ -5,6 +5,9 @@ namespace Src\Controllers\Administrators;
 use Src\Controllers\Controller;
 use Src\Http\Request;
 use Src\Http\Response;
+use Src\Models\DishModel;
+use Src\Models\OrderModel;
+use Src\Models\UserModel;
 
 class DashboardController extends Controller
 {
@@ -13,19 +16,37 @@ class DashboardController extends Controller
     parent::__construct();
   }
 
-  public function index(Request $request, Response $response, array $params)
+  private function getSessionData(string $session)
   {
-    $cacheKey = "Src\\Controllers\\Users\\HomeController@index";
-    $cacheData = self::$cached->get($cacheKey);
+    $entity = null;
 
-    if ($cacheData !== false) {
-      $template = $cacheData;
-    } else {
-      $template = view("administrators/requests");
-      // TODO: modify cache time
-      self::$cached->set($cacheKey, $template, 0);
+    switch ($session) {
+      case "orders":
+        $entity = new OrderModel;
+        break;
+
+      case "users":
+        $entity = new UserModel;
+        break;
+
+      case "dishes":
+        $entity = new DishModel;
+        break;
     }
 
+    $data = $entity->all() ?? [];
+    return $data;
+  }
+
+  public function index(Request $request, Response $response, array $params)
+  {
+    $session = $params["session"] ?? "";
+    $data["session"] = $session;
+    $data["session_title"] = ucwords(str_replace("-", " ", $session));
+
+    $data["items"] = $this->getSessionData($session);
+
+    $template = view("administrators/$session", $data);
     $response->send($template, 200);
   }
 }

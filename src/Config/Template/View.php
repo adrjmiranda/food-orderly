@@ -51,8 +51,8 @@ class View
     ob_end_clean();
 
     if (!empty($this->masterTemplate)) {
-      $allData = array_merge($data, $this->masterData);
       $layout = $this->masterTemplate;
+      $allData = array_merge($data, $this->masterData);
 
       $this->masterContent = $content;
       $this->masterTemplate = '';

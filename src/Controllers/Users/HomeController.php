@@ -16,19 +16,10 @@ class HomeController extends Controller
 
   public function index(Request $request, Response $response, array $params)
   {
-    $cacheKey = "Src\\Controllers\\Users\\HomeController@index";
-    $cacheData = self::$cached->get($cacheKey);
+    $categories = (new CategoryModel)->all();
+    $data['categories'] = $categories;
 
-    if ($cacheData !== false) {
-      $template = $cacheData;
-    } else {
-      $categories = (new CategoryModel)->all();
-      $data['categories'] = $categories;
-
-      $template = view("users/home", $data);
-      // TODO: modify cache time
-      self::$cached->set($cacheKey, $template, 0);
-    }
+    $template = view("users/home", $data);
 
     $response->send($template, 200);
   }

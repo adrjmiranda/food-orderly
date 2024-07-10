@@ -7,7 +7,7 @@ class CartItemModel extends Model
   const TABLE = "cart_items";
 
   public int $id;
-  public int $amount;
+  public float $amount;
   public int $cart_id;
   public int $dish_id;
   public string $created_at;
