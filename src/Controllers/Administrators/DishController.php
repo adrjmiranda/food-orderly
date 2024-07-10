@@ -6,6 +6,7 @@ use Src\Config\Validations\DishValidate;
 use Src\Controllers\Controller;
 use Src\Http\Request;
 use Src\Http\Response;
+use Src\Models\CategoryModel;
 use Src\Models\DishModel;
 
 class DishController extends Controller
@@ -92,5 +93,34 @@ class DishController extends Controller
         "errors" => $errors
       ]);
     }
+  }
+
+  public function edit(Request $request, Response $response, array $params)
+  {
+    $formData = $request->getQueryParams();
+
+    $id = (int) ($formData["id"] ?? "");
+
+    $dishById = (new DishModel)->findOne("id", $id);
+
+    if ($dishById instanceof DishModel) {
+      $data["dish"] = $dishById;
+
+      $categories = (new CategoryModel)->all() ?? [];
+      $data["categories"] = $categories;
+
+      $template = view("administrators/edit-dish", $data);
+      $response->send($template, 200);
+    } else {
+      return (new DashboardController)->index($request, $response, ["session" => "dishes"]);
+    }
+  }
+
+  public function update(Request $request, Response $response, array $params)
+  {
+  }
+
+  public function delete(Request $request, Response $response, array $params)
+  {
   }
 }
