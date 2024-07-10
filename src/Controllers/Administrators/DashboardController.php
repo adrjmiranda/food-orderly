@@ -5,6 +5,7 @@ namespace Src\Controllers\Administrators;
 use Src\Controllers\Controller;
 use Src\Http\Request;
 use Src\Http\Response;
+use Src\Models\CategoryModel;
 use Src\Models\DishModel;
 use Src\Models\OrderModel;
 use Src\Models\UserModel;
@@ -32,10 +33,14 @@ class DashboardController extends Controller
       case "dishes":
         $entity = new DishModel;
         break;
+
+      case "new-dish":
+        $entity = new CategoryModel;
+        break;
     }
 
-    $data = $entity->all() ?? [];
-    return $data;
+    $items = $entity->all() ?? [];
+    return $items;
   }
 
   public function index(Request $request, Response $response, array $params)
