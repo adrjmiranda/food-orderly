@@ -85,6 +85,7 @@
 	padding: 1rem;
 	border-radius: var(--larger-br);
 	box-shadow: var(--light-shadow);
+	text-transform: capitalize;
 }
 
 #session-bar ul li a:hover,
@@ -238,4 +239,58 @@
 	box-shadow: var(--light-shadow);
 	padding: 0.5rem;
 	border-radius: var(--larger-br);
+}
+
+/* Data Form */
+
+#data-form {
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+	box-shadow: var(--light-shadow);
+	border-radius: var(--larger-br);
+	margin-top: 1rem;
+	padding: 2rem;
+}
+
+#data-form .col {
+	flex: 1;
+	display: flex;
+	gap: 1rem;
+	flex-direction: column;
+}
+
+#data-form button {
+	flex: 100%;
+}
+
+#data-form .input-field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+#data-form label {
+	font-size: 0.9rem;
+	font-weight: bold;
+	color: var(--grey);
+}
+
+#data-form input,
+#data-form textarea,
+#data-form select {
+	padding: 0.5rem;
+	border-radius: var(--larger-br);
+	box-shadow: var(--light-shadow);
+}
+
+#image-preview {
+	box-shadow: var(--light-shadow);
+	border-radius: var(--larger-br);
+	height: 100%;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-color: var(--soft-gray);
+	background-size: 90%;
 }
