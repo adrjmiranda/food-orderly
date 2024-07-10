@@ -72,6 +72,6 @@ class Request
 
   public function getFile(string $name)
   {
-    return $this->files["name"] ?? null;
+    return $this->files[$name] ?? null;
   }
 }

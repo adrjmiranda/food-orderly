@@ -16,14 +16,14 @@ $this->extend('administrators/master', [
 
     <!-- Data Form -->
 
-    <form action="#" id="data-form">
+    <form action="/admin/dish/store" method="post" enctype="multipart/form-data" id="data-form">
       <!-- TODO: fill csrf value -->
       <input type="hidden" name="csrf" value="">
 
       <div class="col">
         <div class="input-field">
-          <label for="image-name">Image</label>
-          <input type="file" name="image_name" id="image-name">
+          <label for="image-file">Image</label>
+          <input type="file" name="image_file" id="image-file">
         </div>
 
         <div class="input-field">

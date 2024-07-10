@@ -11,7 +11,7 @@
 			"Src\\": "src/"
 		},
 		"files": [
-			"src/utils/functions.php"
+			"src/utils/main.php"
 		]
 	},
 	"scripts": {

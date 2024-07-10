@@ -47,4 +47,208 @@ class Model
       $this->handleException($pDOException->getMessage());
     }
   }
+
+  public function find(string $column, mixed $value, string $order = "DESC", int $limit = 0): ?array
+  {
+    $query = "SELECT * FROM $this->tableName WHERE $column = :$column ORDER BY id $order";
+
+    if ($limit > 0) {
+      $query .= " LIMIT $limit";
+    }
+
+    try {
+      $stmt = self::$pdo->prepare($query);
+      $stmt->bindValue(":$column", $value);
+      $stmt->execute();
+
+      return $stmt->fetchAll();
+    } catch (PDOException $pDOException) {
+      $this->handleException($pDOException->getMessage());
+    }
+  }
+
+  public function findOne(string $column, mixed $value)
+  {
+    $query = "SELECT * FROM $this->tableName WHERE $column = :$column LIMIT 1";
+
+    try {
+      $stmt = self::$pdo->prepare($query);
+      $stmt->bindValue(":$column", $value);
+      $stmt->execute();
+
+      return $stmt->fetchObject(get_called_class());
+    } catch (PDOException $pDOException) {
+      $this->handleException($pDOException->getMessage());
+    }
+  }
+
+  public function findSpecificFields(array $fields, string $order = "DESC", int $limit = 0): ?array
+  {
+    $query = "SELECT ";
+
+    foreach ($fields as $column) {
+      $query .= "$column, ";
+    }
+    $query = substr($query, 0, -2);
+    $query .= " FROM $this->tableName ORDER BY id $order";
+
+    if ($limit > 0) {
+      $query .= " LIMIT $limit";
+    }
+
+    try {
+      $stmt = self::$pdo->prepare($query);
+      $stmt->execute();
+
+      return $stmt->fetchAll();
+    } catch (PDOException $pDOException) {
+      $this->handleException($pDOException->getMessage());
+    }
+  }
+
+  public function findSpecificFieldsAndCondition(array $fields, string $specificColumn, string $condition, mixed $specificValue, string $order = "DESC", int $limit = 0, int $offset = 0): ?array
+  {
+    $query = "SELECT ";
+
+    foreach ($fields as $column) {
+      $query .= "$column, ";
+    }
+    $query = substr($query, 0, -2);
+    $query .= "FROM $this->tableName";
+
+    $query .= " WHERE $specificColumn $condition :$specificColumn ORDER BY id $order";
+
+    if ($limit > 0) {
+      $query .= " LIMIT $limit";
+    }
+
+    if ($offset > 0) {
+      $query .= " OFFSET $offset";
+    }
+
+    try {
+      $stmt = self::$pdo->prepare($query);
+      $stmt->bindValue(":$specificColumn", $specificValue);
+      $stmt->execute();
+
+      return $stmt->fetchAll();
+    } catch (PDOException $pDOException) {
+      $this->handleException($pDOException->getMessage());
+    }
+  }
+
+  private function removeUselessKeysInStore(array $data): array
+  {
+    foreach ($data as $key => $value) {
+      if (strpos($key, 'App\Models') !== false || $key === 'id') {
+        unset($data[$key]);
+      }
+
+      if (strpos($key, 'pdo') !== false) {
+        unset($data[$key]);
+      }
+    }
+
+    return $data;
+  }
+
+  private function removeUselessKeysInUpdate(array $data): array
+  {
+    foreach ($data as $key => $value) {
+      if (strpos($key, 'App\Models') !== false) {
+        unset($data[$key]);
+      }
+
+      if (strpos($key, 'pdo') !== false) {
+        unset($data[$key]);
+      }
+    }
+
+    return $data;
+  }
+
+  public function store()
+  {
+    $data = (array) $this;
+
+    $data = $this->removeUselessKeysInStore($data);
+
+    $columns = array_keys($data);
+
+    $query = "INSERT INTO $this->tableName (";
+    foreach ($columns as $column) {
+      $query .= "$column, ";
+    }
+    $query = substr($query, 0, -2);
+    $query .= ') VALUES (';
+
+    foreach ($columns as $column) {
+      $query .= ":$column, ";
+    }
+    $query = substr($query, 0, -2);
+    $query .= ')';
+
+    try {
+      $stmt = $this->pdo->prepare($query);
+      foreach ($data as $column => $value) {
+        $stmt->bindValue(":$column", $value);
+      }
+
+      $stmt->execute();
+
+      return $this->pdo->lastInsertId();
+    } catch (PDOException $pDOException) {
+      $this->handleException($pDOException->getMessage());
+    }
+  }
+
+  public function update(): ?bool
+  {
+    $data = (array) $this;
+
+    $data = $this->removeUselessKeysInUpdate($data);
+
+    $columns = array_keys($data);
+
+    $query = "UPDATE $this->tableName SET ";
+    foreach ($columns as $column) {
+      if ($column !== 'id') {
+        $query .= "$column = :$column, ";
+      }
+    }
+    $query = substr($query, 0, -2);
+    $query .= " WHERE id = :id";
+
+    try {
+      $stmt = $this->pdo->prepare($query);
+      foreach ($data as $column => $value) {
+        if ($column !== 'id') {
+          $stmt->bindValue(":$column", $value);
+        }
+      }
+      $stmt->bindParam(':id', $data['id'], PDO::PARAM_INT);
+
+      return $stmt->execute();
+    } catch (PDOException $pDOException) {
+      $this->handleException($pDOException->getMessage());
+    }
+  }
+
+  public function delete(): ?bool
+  {
+    $data = (array) $this;
+
+    try {
+      $id = $data['id'];
+
+      $query = "DELETE FROM $this->tableName WHERE id = :id";
+
+      $stmt = $this->pdo->prepare($query);
+      $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+      return $stmt->execute();
+    } catch (PDOException $pDOException) {
+      $this->handleException($pDOException->getMessage());
+    }
+  }
 }
