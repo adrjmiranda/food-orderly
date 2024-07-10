@@ -161,6 +161,17 @@
 
 /* Data */
 
+#data-empty {
+	margin-top: 1rem;
+	text-align: center;
+	box-shadow: var(--light-shadow);
+	padding: 2rem;
+	border-radius: var(--larger-br);
+	font-weight: 500;
+	font-style: italic;
+	font-size: 0.9rem;
+}
+
 #data {
 	margin: 1rem 0;
 	padding: 2rem;

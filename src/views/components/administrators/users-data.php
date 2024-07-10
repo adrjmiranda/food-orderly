@@ -1,47 +1,43 @@
-<div id="data">
-  <table>
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Customer</th>
-        <th>Time</th>
-        <th>Amount</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
+<?php if (empty($items)): ?>
+  <p id="data-empty">No users registered in the system</p>
+<?php else: ?>
+  <div id="data">
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>E-mail</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>John Doe</td>
-        <td>August 2, 2022</td>
-        <td>$ 58.69</td>
-        <td>
-          <form action="#">
-            <select name="action">
-              <option value="production">production</option>
-              <option value="sent">sent</option>
-              <option value="delivered">delivered</option>
-            </select>
-          </form>
-        </td>
-      </tr>
+      <tbody>
+        <?php foreach ($items as $user): ?>
+          <tr>
+            <td><?= $user->id ?></td>
+            <td><?= $user->first_name . " " . $user->last_name ?></td>
+            <td><?= $user->email ?></td>
+            <td><?= (new DateTime($user->created_at))->format('F jS, Y') ?></td>
+            <td>
+              <form action="#">
+                <input type="hidden" name="id" value="<?= $user->id ?>">
+                <button type="submit">
+                  <i class="fa-solid fa-user"></i>
+                </button>
+              </form>
 
-      <tr>
-        <td>2</td>
-        <td>John Doe</td>
-        <td>August 2, 2022</td>
-        <td>$ 58.69</td>
-        <td>
-          <form action="#">
-            <select name="action">
-              <option value="production">production</option>
-              <option value="sent">sent</option>
-              <option value="delivered">delivered</option>
-            </select>
-          </form>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+              <form action="#">
+                <input type="hidden" name="id" value="<?= $user->id ?>">
+                <button type="submit">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+<?php endif; ?>

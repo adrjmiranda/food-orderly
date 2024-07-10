@@ -25,12 +25,12 @@ class DashboardController extends Controller
     switch ($session) {
       case "orders":
         $entity = new OrderModel;
-        $fields = ["id", "amount", "status", "customers_first_name", "customers_last_name"];
+        $fields = ["id", "amount", "status", "customers_first_name", "customers_last_name", "created_at"];
         break;
 
       case "users":
         $entity = new UserModel;
-        $fields = ["id", "first_name", "last_name", "email"];
+        $fields = ["id", "first_name", "last_name", "email", "created_at"];
         break;
 
       case "dishes":
