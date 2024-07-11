@@ -7,7 +7,7 @@ use Src\Http\Request;
 use Src\Http\Response;
 use Src\Config\Session\Store;
 
-class RequireLogin
+class RequireLogout
 {
   private Logger $logger;
 
@@ -18,8 +18,8 @@ class RequireLogin
 
   public function handle(Request $request, Response $response, array $params, callable $next)
   {
-    if (!Store::isLogged("user")) {
-      $response->redirect("/login");
+    if (Store::isLogged("user")) {
+      $response->redirect("/");
     }
 
     return $next($request, $response, $params);

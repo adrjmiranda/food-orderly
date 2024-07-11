@@ -6,17 +6,19 @@
     </button>
   </form>
 
-  <form action="#" class="order-form">
-    <select name="order">
-      <option value="production">production</option>
-      <option value="sent">sent</option>
-      <option value="delivered">delivered</option>
-      <option value="recent">recent</option>
-      <option value="old">old</option>
-    </select>
+  <?php if ($session === "orders"): ?>
+    <form action="#" class="order-form">
+      <select name="order">
+        <option value="production">production</option>
+        <option value="sent">sent</option>
+        <option value="delivered">delivered</option>
+        <option value="recent">recent</option>
+        <option value="old">old</option>
+      </select>
 
-    <button type="submit">
-      <i class="fa-solid fa-arrows-rotate"></i>
-    </button>
-  </form>
+      <button type="submit">
+        <i class="fa-solid fa-arrows-rotate"></i>
+      </button>
+    </form>
+  <?php endif; ?>
 </div>

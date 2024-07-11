@@ -24,6 +24,7 @@ if ($_ENV['APPLICATION_STATUS'] === 'production') {
 
 ini_set('session.cookie_samesite', 'Strict');
 
+
 (new Store());
 
 $baseUrl = $_ENV["BASE_URL"];

@@ -15,13 +15,27 @@
 
       <div class="right-nav">
         <ul class="register-login">
-          <li>
-            <a href="/register">Create account</a>
-          </li>
+          <?php if (isset($_SESSION["user"]["id"])): ?>
+            <li>
+              <a href="/register" id="bag"><i class="fa-solid fa-bag-shopping"></i></a>
+            </li>
 
-          <li>
-            <a href="/login" class="btn btn-primary">Login</a>
-          </li>
+            <li>
+              <a href="/register" id="profile-data"><i class="fa-regular fa-user"></i></a>
+            </li>
+
+            <li>
+              <a href="/logout" class="btn btn-primary">Logout</a>
+            </li>
+          <?php else: ?>
+            <li>
+              <a href="/register">Create account</a>
+            </li>
+
+            <li>
+              <a href="/login" class="btn btn-primary">Login</a>
+            </li>
+          <?php endif; ?>
         </ul>
       </div>
     </div>

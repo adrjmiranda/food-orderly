@@ -43,7 +43,7 @@
 }
 
 .btn.btn-primary {
-	color: var(--white);
+	color: var(--white) !important;
 	background-color: var(--bright-red);
 }
 

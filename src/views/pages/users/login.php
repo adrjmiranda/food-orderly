@@ -40,6 +40,6 @@ $this->extend('users/auth-area', [
       <button type="submit" class="btn btn-primary">Enter</button>
     </div>
 
-    <p class="change-form">Don't have an account yet? <a href="/Register">Register</a></p>
+    <p class="change-form">Don't have an account yet? <a href="/register">Register</a></p>
   </form>
 </div>

@@ -40,6 +40,8 @@ class View
   {
     $templateFile = $this->getTemplateFilePath($template);
 
+    $data["base_url"] = $_ENV["BASE_URL"];
+
     ob_start();
 
     extract($data);

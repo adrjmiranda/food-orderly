@@ -14,12 +14,15 @@ class Store
 
   public function __construct()
   {
+
     if (self::$logger === null) {
       self::$logger = new Logger;
     }
+
+    self::init();
   }
 
-  protected static function init(): void
+  public static function init(): void
   {
     if (session_status() !== PHP_SESSION_ACTIVE) {
       session_set_cookie_params([
@@ -63,7 +66,7 @@ class Store
       }
     } catch (Exception $exception) {
       self::$logger->error($exception->getMessage());
-      throw new Exception("There Was An Error Configuring The Session", 500);
+      throw new Exception("Serve Error", 500);
     }
   }
 
