@@ -16,11 +16,17 @@ $this->extend('administrators/master', [
 
     <!-- Data Form -->
 
-    <form action="/admin/dish/store" method="post" enctype="multipart/form-data" id="data-form">
+    <form action="/admin/dish/update" method="post" enctype="multipart/form-data" id="data-form">
+
       <!-- TODO: fill csrf value -->
       <input type="hidden" name="csrf" value="">
+      <input type="hidden" name="id" value="<?= isset($dish->id) ? $dish->id : "" ?>">
 
       <div class="col">
+        <?php if (isset($errors["update_error"])): ?>
+          <p class="form-error"><?= $errors["update_error"] ?></p>
+        <?php endif; ?>
+
         <div class="input-field">
           <label for="image-file">Image</label>
           <input type="file" name="image_file" id="image-file">
@@ -81,7 +87,7 @@ $this->extend('administrators/master', [
         <div id="image-preview" style="background-image: url('<?= $base_url ?>/assets/img/empty-plate.png');"></div>
       </div>
 
-      <button class="btn btn-primary">Create</button>
+      <button class="btn btn-primary">Update</button>
     </form>
   </div>
 </div>

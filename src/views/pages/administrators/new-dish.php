@@ -21,6 +21,10 @@ $this->extend('administrators/master', [
       <input type="hidden" name="csrf" value="">
 
       <div class="col">
+        <?php if (isset($errors["store_error"])): ?>
+          <p class="form-error"><?= $errors["store_error"] ?></p>
+        <?php endif; ?>
+
         <div class="input-field">
           <label for="image-file">Image</label>
           <input type="file" name="image_file" id="image-file">
