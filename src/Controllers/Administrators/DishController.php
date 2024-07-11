@@ -227,5 +227,22 @@ class DishController extends Controller
 
   public function delete(Request $request, Response $response, array $params)
   {
+    $formData = $request->getQueryParams();
+
+    $id = (int) ($formData["id"] ?? "");
+
+    $dishById = (new DishModel)->findOne("id", $id);
+
+    if (!($dishById instanceof DishModel)) {
+      $response->redirect("/admin/dashboard/dishes");
+    }
+
+    $imageDir = __DIR__ . "/../../../assets/img/dishes/";
+
+    if (unlink($imageDir . $dishById->image_name)) {
+      $dishById->delete();
+    }
+
+    $response->redirect("/admin/dashboard/dishes");
   }
 }
