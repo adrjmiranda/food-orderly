@@ -58,9 +58,9 @@ class Store
     try {
       $key = self::getValidKey($key);
 
-      $_SESSION[$key]["id"] = $data["id"];
-      $_SESSION[$key]["email"] = $data["email"];
-      $_SESSION[$key]["name"] = $data["name"];
+      foreach ($data as $var => $value) {
+        $_SESSION[$key][$var] = $value;
+      }
     } catch (Exception $exception) {
       self::$logger->error($exception->getMessage());
       throw new Exception("There Was An Error Configuring The Session", 500);

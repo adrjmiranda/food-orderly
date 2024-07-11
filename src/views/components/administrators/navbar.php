@@ -16,6 +16,10 @@
           case "new-dish":
             echo "<i class='fa-solid fa-plus'></i>";
             break;
+
+          default:
+            echo "<i class='fa-solid fa-pen-nib'></i>";
+            break;
         endswitch;
         ?>
         <span><?= $session_title ?></span>
@@ -24,7 +28,7 @@
       <div class="admin-info">
         <div class="welcome">
           <span>Welcome</span>
-          <a href="#" class="name">Jane Doe</a>
+          <a href="#" class="name"><?= $_SESSION["admin"]["first_name"] . " " . $_SESSION["admin"]["last_name"] ?></a>
         </div>
 
         <img src="<?= $base_url ?>/assets/img/administrators/avatar.png" alt="Avatar Image">

@@ -345,6 +345,7 @@ class Router
       }
 
       $params = [];
+      $middlewares = [];
 
       if ($this->itIsStaticRoute($httpMethod, $uri)) {
         $controllerNamespace = $this->staticRoutes[$httpMethod][$uri]['controller_namespace'];
@@ -361,7 +362,7 @@ class Router
           $controllerNamespace = $this->dynamicRoutes[$httpMethod][$staticPart]['controller_namespace'];
           $action = $this->dynamicRoutes[$httpMethod][$staticPart]['action'];
 
-          $middlewares = $this->dynamicRoutes[$httpMethod][$uri]['middlewares'] ?? [];
+          $middlewares = $this->dynamicRoutes[$httpMethod][$staticPart]['middlewares'];
 
           $paramsPart = str_replace($staticPart, '', $uri);
 
