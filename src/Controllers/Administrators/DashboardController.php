@@ -60,4 +60,18 @@ class DashboardController extends Controller
     $template = view("administrators/$session", $data);
     $response->send($template, 200);
   }
+
+  public function getDishesByName(Request $request, Response $response, array $params)
+  {
+    $formData = $request->getQueryParams();
+
+    $search = $formData["search"] ?? "";
+
+    $dishes = (new DishModel)->findByText(["id", "name", "price", "category_id", "updated_at"], "name", $search);
+
+    $data["items"] = $dishes;
+
+    $template = view("administrators/dishes", $data);
+    $response->send($template, 200);
+  }
 }

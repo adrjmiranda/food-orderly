@@ -1,5 +1,5 @@
 <div id="search-area">
-  <form action="#" class="search-form">
+  <form action="/admin/dishes/search" method="get" class="search-form">
     <input type="search" name="search" placeholder="Search for order">
     <button type="submit">
       <i class="fa-solid fa-magnifying-glass"></i>

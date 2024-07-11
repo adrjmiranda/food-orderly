@@ -82,6 +82,27 @@ class Model
     }
   }
 
+  public function findByText(array $fields, string $textColumn, string $text, string $order = "DESC"): ?array
+  {
+    $query = "SELECT ";
+
+    foreach ($fields as $column) {
+      $query .= "$column, ";
+    }
+    $query = substr($query, 0, -2);
+    $query .= " FROM $this->tableName WHERE $textColumn LIKE :text ORDER BY id $order";
+
+    try {
+      $stmt = self::$pdo->prepare($query);
+      $stmt->bindValue(":text", '%' . $text . '%', PDO::PARAM_STR);
+      $stmt->execute();
+
+      return $stmt->fetchAll();
+    } catch (PDOException $pDOException) {
+      $this->handleException($pDOException->getMessage());
+    }
+  }
+
   public function findSpecificFields(array $fields, string $order = "DESC", int $limit = 0): ?array
   {
     $query = "SELECT ";
