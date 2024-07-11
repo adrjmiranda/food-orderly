@@ -68,16 +68,21 @@
 
 /* Session Bar */
 
-#session-bar ul {
+#session-bar {
 	width: 100%;
 	height: auto;
-	align-items: center;
-	gap: 1rem;
 	background-color: var(--white);
 	padding: 2rem;
 	border-radius: var(--larger-br);
 	box-shadow: var(--light-shadow);
 	font-weight: bold;
+	display: flex;
+	justify-content: space-between;
+}
+
+#session-bar ul {
+	align-items: center;
+	gap: 1rem;
 }
 
 #session-bar ul li a {

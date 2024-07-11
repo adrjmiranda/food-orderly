@@ -5,4 +5,6 @@
     <li><a href="/admin/dashboard/dishes" class="<?= $session === "dishes" ? "active" : "" ?>">Dishes</a></li>
     <li><a href="/admin/dashboard/new-dish" class="<?= $session === "new-dish" ? "active" : "" ?>">Add new dish</a></li>
   </ul>
+
+  <a href="/admin/logout" id="logout" class="btn btn-primary">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
 </div>
