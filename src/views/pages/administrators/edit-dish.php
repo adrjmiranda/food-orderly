@@ -84,7 +84,9 @@ $this->extend('administrators/master', [
       </div>
 
       <div class="col">
-        <div id="image-preview" style="background-image: url('<?= $base_url ?>/assets/img/empty-plate.png');"></div>
+        <div id="image-preview"
+          style="background-image: url('<?= $base_url ?>/assets/img/<?= isset($dish->image_name) ? "dishes/" . $dish->image_name : "empty-plate.png" ?>'); background-size: <?= isset($dish->image_name) ? "cover" : "contain" ?>">
+        </div>
       </div>
 
       <button class="btn btn-primary">Update</button>
