@@ -341,8 +341,135 @@
 	background-color: var(--white);
 	border-top-left-radius: 115%;
 	border-bottom-left-radius: 115%;
-	padding: 2rem 2rem 2rem 15rem;
+	padding: 2rem 2rem 2rem 10rem;
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+}
+
+#cart .cart-header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+#cart .cart-header button {
+	position: absolute;
+	left: 0;
+	color: var(--bright-red);
+	font-size: 1.2rem;
+}
+
+#cart .cart-header button:hover {
+	transform: scale(1.1);
+}
+
+#cart .cart-header h5 {
+	font-size: 1rem;
+	text-transform: capitalize;
+	font-weight: 500;
+}
+
+#cart .items-list {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	height: calc(100vh - 4rem);
+	max-height: 100vh;
+	overflow-y: scroll;
+	padding: 0.5rem;
+}
+
+#cart .total {
+	display: flex;
+	justify-content: space-between;
+}
+
+#cart .total p:nth-child(1) {
+	font-weight: 500;
+	color: var(--dark-teal);
+	text-transform: uppercase;
+	font-size: 0.9rem;
+}
+
+#cart .total p:nth-child(2) {
+	font-weight: bold;
+	color: var(--teal);
+}
+
+.cart-item {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	box-shadow: var(--light-shadow);
+	border-radius: 0.3rem;
+	padding: 0.3rem;
+	position: relative;
+}
+
+.cart-item img {
+	height: 60px;
+	width: 60px;
+	object-fit: cover;
+	border-radius: 0.3rem;
+}
+
+.cart-item .item-info {
+	display: flex;
+	align-items: flex-end;
+}
+
+.cart-item .item-info .info {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.cart-item .item-info .info .name {
+	font-weight: 500;
+	font-family: var(--font-marcellus);
+	text-transform: capitalize;
+	color: var(--dark-teal);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-wrap: nowrap;
+	max-width: 100px;
+}
+
+.cart-item .item-info .price {
+	font-size: 0.9rem;
+	font-weight: 300;
+	color: var(--black);
+}
+
+.cart-item .item-info .info .quantity {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.cart-item .item-info .info .quantity button {
+	color: var(--burnt-orange);
+	font-size: 0.9rem;
+	background-color: var(--soft-gray);
+	padding: 0.3rem;
+}
+
+.cart-item .item-info .info .quantity span {
+	font-weight: 300;
+	color: #2229;
+	font-size: 0.9rem;
+}
+
+.cart-item .remove-item {
+	position: absolute;
+	right: 0.5rem;
+	top: 0.5rem;
+	font-size: 0.9rem;
+}
+
+.cart-item .remove-item:hover {
+	color: var(--bright-red);
+	transform: scale(1.1);
 }
