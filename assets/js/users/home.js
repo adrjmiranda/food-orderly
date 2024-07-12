@@ -1,0 +1,87 @@
+// TODO: in development
+const baseUrl = 'http://localhost:8000';
+
+const categoryButtons = document.querySelectorAll('.category-button');
+const listContainer = document.querySelector('#dish-list .content');
+
+// TODO: in development
+const apiUrl = 'http://localhost:8000/api/v1';
+const limit = 12;
+
+const getAllDishes = async () => {
+	try {
+		const response = await fetch(apiUrl + '/dishes/' + limit, {
+			method: 'GET',
+		});
+
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
+
+		const res = await response.json();
+		return res.data;
+	} catch (e) {
+		console.log(e.message);
+		return null;
+	}
+};
+
+const getDishesByCategory = async (categoryId) => {
+	try {
+		const response = await fetch(apiUrl + '/dishes/category/' + categoryId, {
+			method: 'GET',
+		});
+
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
+
+		const res = await response.json();
+		return res.data;
+	} catch (e) {
+		console.log(e.message);
+		return null;
+	}
+};
+
+const updateListOfItems = (data) => {
+	listContainer.innerHTML = null;
+
+	data.forEach((dish) => {
+		const innerContent = `
+		<div class="dish-card">
+			<div class="img">
+				<img src="${baseUrl}/assets/img/dishes/${dish.image_name}" alt="${dish.name}">
+			</div>
+			<div class="info">
+				<h3 class="name">${dish.name}</h3>
+				<span class="price">$ ${dish.price}</span>
+				<p class="description">
+					${dish.description}
+				</p>
+				<a href="#" class="btn btn-secondary">Order</a>
+			</div>
+		</div>`;
+
+		const item = document.createElement('div');
+		item.innerHTML = innerContent;
+
+		listContainer.appendChild(item);
+	});
+};
+
+(async () => {
+	const data = await getAllDishes();
+	updateListOfItems(data);
+})();
+
+categoryButtons &&
+	categoryButtons.forEach((button) => {
+		button.addEventListener('click', async () => {
+			const categoryId = button.dataset.categoryId;
+
+			let data = await getDishesByCategory(categoryId);
+
+			updateListOfItems(data);
+		});
+	});

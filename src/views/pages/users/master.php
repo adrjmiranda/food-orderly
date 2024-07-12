@@ -13,6 +13,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Food Orderly | <?= $page_title ?></title>
 
+  <!-- Scripts -->
+
+  <script src="<?= $base_url ?>/assets/js/users/home.js" defer></script>
+
   <!-- Styles -->
 
   <link rel="stylesheet" href="<?= $base_url ?>/assets/css/users/master.css">

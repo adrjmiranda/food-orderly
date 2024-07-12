@@ -30,9 +30,9 @@ class Model
     throw new Exception("Server Error", 500);
   }
 
-  public function all(string $ordering = "DESC", int $limit = 0): ?array
+  public function all(string $order = "DESC", int $limit = 0): ?array
   {
-    $query = "SELECT * FROM $this->tableName ORDER BY id $ordering";
+    $query = "SELECT * FROM $this->tableName ORDER BY id $order";
 
     if ($limit > 0) {
       $query .= " LIMIT $limit";
@@ -135,7 +135,7 @@ class Model
       $query .= "$column, ";
     }
     $query = substr($query, 0, -2);
-    $query .= "FROM $this->tableName";
+    $query .= " FROM $this->tableName";
 
     $query .= " WHERE $specificColumn $condition :$specificColumn ORDER BY id $order";
 

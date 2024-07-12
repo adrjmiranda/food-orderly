@@ -16,7 +16,7 @@ class Router
 {
   const PARAMS_PATTERN = "/\{([^}]*)\}/";
   const PARAM_NAME_PATTERN = "/^[a-z]+(?:_[a-z]+)*$/";
-  const URL_STATIC_PARTS_PATTERN = "/^[a-z]+(?:-[a-z]+)*$/";
+  const URL_STATIC_PARTS_PATTERN = "/^[a-z0-9]+(?:-[a-z0-9]+)*$/";
 
   private array $patternList = [
     '%d' => '/^[1-9][0-9]*$/',
