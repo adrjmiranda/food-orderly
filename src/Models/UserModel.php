@@ -11,14 +11,14 @@ class UserModel extends Model
   public string $last_name;
   public string $email;
   public string $password;
-  public string $street;
-  public string $number;
-  public string $complement;
-  public string $name_on_credit_card;
-  public string $person_code;
-  public string $card_number;
-  public string $validity;
-  public string $cvv;
+  public ?string $street;
+  public ?string $number;
+  public ?string $complement;
+  public ?string $name_on_credit_card;
+  public ?string $person_code;
+  public ?string $card_number;
+  public ?string $validity;
+  public ?string $cvv;
   public string $created_at;
   public string $updated_at;
 

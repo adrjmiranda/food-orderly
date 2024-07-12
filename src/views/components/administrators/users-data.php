@@ -28,7 +28,7 @@
                 </button>
               </form>
 
-              <form action="#">
+              <form action="/admin/user/remove" method="get">
                 <input type="hidden" name="id" value="<?= $user->id ?>">
                 <button type="submit">
                   <i class="fa-solid fa-trash-can"></i>
