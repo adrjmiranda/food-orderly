@@ -47,6 +47,12 @@
 	background-color: var(--bright-red);
 }
 
+.btn.btn-secondary {
+	background-color: var(--dark-teal);
+	text-align: center;
+	color: var(--white);
+}
+
 .form-error {
 	color: var(--bright-red);
 	font-weight: 500;

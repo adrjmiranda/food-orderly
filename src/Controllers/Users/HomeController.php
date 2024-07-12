@@ -6,6 +6,7 @@ use Src\Controllers\Controller;
 use Src\Http\Request;
 use Src\Http\Response;
 use Src\Models\CategoryModel;
+use Src\Models\DishModel;
 
 class HomeController extends Controller
 {
@@ -19,6 +20,8 @@ class HomeController extends Controller
     $categories = (new CategoryModel)->all();
     $data['categories'] = $categories;
 
+    $dishes = (new DishModel)->findSpecificFields(["id", "name", "image_name", "description", "price"]);
+    $data["items"] = $dishes;
     $template = view("users/home", $data);
 
     $response->send($template, 200);
