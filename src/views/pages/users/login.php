@@ -14,7 +14,7 @@ $this->extend('users/auth-area', [
     <p>It won't be long before you satisfy your hunger!</p>
   </div>
 
-  <form action="#">
+  <form action="/login" method="post">
     <!-- TODO: fill csrf value -->
     <input type="hidden" name="csrf" value="">
 
