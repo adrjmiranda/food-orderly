@@ -20,6 +20,10 @@
 	--larger-br: 0.5rem;
 }
 
+body {
+	position: relative;
+}
+
 .container {
 	width: 100%;
 	max-width: 1280px;

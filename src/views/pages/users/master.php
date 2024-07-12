@@ -36,6 +36,10 @@
   <!-- Footer -->
 
   <?php require_once __DIR__ . "/../../components/users/footer.php"; ?>
+
+  <!-- Cart -->
+
+  <?php require_once __DIR__ . "/../../components/users/cart.php"; ?>
 </body>
 
 </html>
