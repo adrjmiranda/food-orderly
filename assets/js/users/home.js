@@ -6,13 +6,15 @@ const listContainer = document.querySelector('#dish-list .content');
 
 // TODO: in development
 const apiUrl = 'http://localhost:8000/api/v1';
-const limit = 12;
 
-const getAllDishes = async () => {
+const getAllDishes = async (limit = '') => {
 	try {
-		const response = await fetch(apiUrl + '/dishes/' + limit, {
-			method: 'GET',
-		});
+		const response = await fetch(
+			apiUrl + `/dishes${limit ? '/' + limit : ''}`,
+			{
+				method: 'GET',
+			}
+		);
 
 		if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`);
@@ -59,7 +61,7 @@ const updateListOfItems = (data) => {
 				<p class="description">
 					${dish.description}
 				</p>
-				<button type="button" class="add-to-cart btn btn-secondary">Order</button>
+				<button type="button" data-id=${dish.id} onclick="addToCart(event)" class="add-to-cart btn btn-secondary">Order</button>
 			</div>
 		</div>`;
 
@@ -70,9 +72,15 @@ const updateListOfItems = (data) => {
 	});
 };
 
-(async () => {
+const storesAllItems = async () => {
 	const data = await getAllDishes();
+	sessionStorage.setItem('items', JSON.stringify(data));
+};
+
+(async () => {
+	const data = await getAllDishes(12);
 	updateListOfItems(data);
+	storesAllItems();
 })();
 
 categoryButtons &&
