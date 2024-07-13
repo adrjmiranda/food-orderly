@@ -2,7 +2,7 @@
   <div id="cart">
     <div class="cart-header">
       <button type="button" id="hide-cart">
-        <i class="fa-solid fa-x"></i>
+        <i class="fa-solid fa-xmark"></i>
       </button>
       <h5>My order</h5>
     </div>

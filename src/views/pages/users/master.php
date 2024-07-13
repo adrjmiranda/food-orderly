@@ -15,9 +15,9 @@
 
   <!-- Scripts -->
 
-  <script src="<?= $base_url ?>/assets/js/users/home.js" defer></script>
-  <script src="<?= $base_url ?>/assets/js/users/change-view-cart.js" defer></script>
-  <script src="<?= $base_url ?>/assets/js/users/cart.js" defer></script>
+  <?php foreach ($scripts as $script): ?>
+    <script src="<?= $base_url ?>/assets/js/users/<?= $script ?>.js" defer></script>
+  <?php endforeach; ?>
 
   <!-- Styles -->
 
@@ -42,10 +42,6 @@
   <!-- Footer -->
 
   <?php require_once __DIR__ . "/../../components/users/footer.php"; ?>
-
-  <!-- Cart -->
-
-  <?php require_once __DIR__ . "/../../components/users/cart.php"; ?>
 </body>
 
 </html>

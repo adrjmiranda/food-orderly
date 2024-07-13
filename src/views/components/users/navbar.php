@@ -15,13 +15,6 @@
 
       <div class="right-nav">
         <ul class="register-login">
-          <li>
-            <button type="button" id="show-cart">
-              <i class="fa-solid fa-cart-shopping"></i>
-              <span></span>
-            </button>
-          </li>
-
           <?php if (isset($_SESSION["user"]["id"])): ?>
             <li>
               <a href="#" id="your-orders">Your orders</a>

@@ -1,3 +1,5 @@
+baseUrl = 'http://localhost:8000';
+
 const cartIcon = document.querySelector('#show-cart');
 const cartQuantity = document.querySelector('#show-cart span');
 const cartTotal = document.querySelector('#cart .total span');

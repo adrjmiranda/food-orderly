@@ -4,7 +4,12 @@
  */
 
 $this->extend('users/master', [
-  "page_title" => "Home"
+  "page_title" => "Home",
+  "scripts" => [
+    "home",
+    "change-view-cart",
+    "cart"
+  ]
 ]);
 ?>
 
@@ -19,3 +24,11 @@ $this->extend('users/master', [
 <!-- Dish List -->
 
 <?php require_once __DIR__ . "/../../components/users/dish-list.php"; ?>
+
+<!-- Cart -->
+
+<?php require_once __DIR__ . "/../../components/users/cart.php"; ?>
+
+<!-- Show Cart Button -->
+
+<?php require_once __DIR__ . "/../../components/users/show-cart-button.php"; ?>

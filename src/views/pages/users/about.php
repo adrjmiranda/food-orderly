@@ -4,16 +4,20 @@
  */
 
 $this->extend('users/master', [
-  "page_title" => "About"
+  "page_title" => "About",
+  "scripts" => [
+    "change-view-cart",
+    "cart"
+  ]
 ]);
 ?>
 
-<!-- Main Banner -->
-
-<?php require_once __DIR__ . "/../../components/users/main-banner.php"; ?>
-
-<!-- Categories Bar  -->
-
-<?php require_once __DIR__ . "/../../components/users/categories-bar.php"; ?>
-
 <h1>About</h1>
+
+<!-- Cart -->
+
+<?php require_once __DIR__ . "/../../components/users/cart.php"; ?>
+
+<!-- Show Cart Button -->
+
+<?php require_once __DIR__ . "/../../components/users/show-cart-button.php"; ?>
