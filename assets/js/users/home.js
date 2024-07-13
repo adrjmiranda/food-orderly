@@ -59,7 +59,7 @@ const updateListOfItems = (data) => {
 				<p class="description">
 					${dish.description}
 				</p>
-				<a href="#" class="btn btn-secondary">Order</a>
+				<button type="button" class="add-to-cart btn btn-secondary">Order</button>
 			</div>
 		</div>`;
 
@@ -78,8 +78,13 @@ const updateListOfItems = (data) => {
 categoryButtons &&
 	categoryButtons.forEach((button) => {
 		button.addEventListener('click', async () => {
-			const categoryId = button.dataset.categoryId;
+			categoryButtons.forEach((btn) => {
+				btn.classList.remove('active');
+			});
 
+			button.classList.add('active');
+
+			let categoryId = button.dataset.categoryId;
 			let data = await getDishesByCategory(categoryId);
 
 			updateListOfItems(data);

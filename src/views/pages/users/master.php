@@ -16,6 +16,7 @@
   <!-- Scripts -->
 
   <script src="<?= $base_url ?>/assets/js/users/home.js" defer></script>
+  <script src="<?= $base_url ?>/assets/js/users/change-view-cart.js" defer></script>
 
   <!-- Styles -->
 

@@ -1,0 +1,23 @@
+@keyframes SlideLeftCart {
+	0% {
+		top: 0;
+		right: -100%;
+	}
+
+	100% {
+		top: 0;
+		right: 0;
+	}
+}
+
+@keyframes SlideRightCart {
+	0% {
+		top: 0;
+		right: 0;
+	}
+
+	100% {
+		top: 0;
+		right: -100%;
+	}
+}

@@ -1,7 +1,7 @@
 <div id="cart-container">
   <div id="cart">
     <div class="cart-header">
-      <button type="button" id="close-cart">
+      <button type="button" id="hide-cart">
         <i class="fa-solid fa-angles-right"></i>
       </button>
       <h5>My order</h5>
