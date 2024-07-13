@@ -94,10 +94,14 @@ const updateCart = (cartItems) => {
 	});
 
 	if (cartItems.length === 0) {
-		cartIcon.style.display = 'none';
+		if (cartIcon) {
+			cartIcon.style.display = 'none';
+		}
 	} else {
-		cartIcon.style.display = 'flex';
-		cartQuantity.innerHTML = cartItems.length;
+		if (cartIcon) {
+			cartIcon.style.display = 'flex';
+			cartQuantity.innerHTML = cartItems.length;
+		}
 	}
 
 	cartTotal.innerHTML = updateCartTotal(cartItems).toLocaleString('en-US', {
