@@ -30,6 +30,11 @@ class DishController extends Controller
   {
     $categoryId = (int) ($params["category_id"] ?? "");
 
+    if ($categoryId === 0) {
+      $params["limit"] = "0";
+      return $this->getAllDishes($request, $response, $params);
+    }
+
     $data = (new DishModel)->findSpecificFieldsAndCondition(["id", "name", "image_name", "description", "price", "category_id"], "category_id", "=", $categoryId);
     $content = [
       "data" => $data,
