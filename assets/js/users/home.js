@@ -1,5 +1,5 @@
 // TODO: in development
-const baseUrl = 'http://localhost:8000';
+let baseUrl = 'http://localhost:8000';
 
 const categoryButtons = document.querySelectorAll('.category-button');
 const listContainer = document.querySelector('#dish-list .content');

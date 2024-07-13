@@ -15,14 +15,14 @@
 
       <div class="right-nav">
         <ul class="register-login">
-          <?php if (isset($_SESSION["user"]["id"])): ?>
-            <li>
-              <button type="button" id="show-cart">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span>1</span>
-              </button>
-            </li>
+          <li>
+            <button type="button" id="show-cart">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span>1</span>
+            </button>
+          </li>
 
+          <?php if (isset($_SESSION["user"]["id"])): ?>
             <li>
               <a href="#" id="your-orders">Your orders</a>
             </li>
@@ -32,7 +32,7 @@
             </li>
           <?php else: ?>
             <li>
-              <a href="/register">Create account</a>
+              <a href="/register" style="text-transform: capitalize;">Create account</a>
             </li>
 
             <li>

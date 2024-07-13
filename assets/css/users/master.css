@@ -455,6 +455,7 @@
 .cart-item .item-info {
 	display: flex;
 	align-items: flex-end;
+	gap: 0.5rem;
 }
 
 .cart-item .item-info .info {
@@ -491,6 +492,10 @@
 	font-size: 0.9rem;
 	background-color: var(--soft-gray);
 	padding: 0.3rem;
+}
+
+.cart-item .item-info .info .quantity button i {
+	pointer-events: none;
 }
 
 .cart-item .item-info .info .quantity span {
