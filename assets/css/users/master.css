@@ -191,6 +191,10 @@
 
 /* Dish List */
 
+#dish-list {
+	margin-bottom: 8rem;
+}
+
 #dish-list .content {
 	display: grid;
 	grid-template-columns: repeat(4, 24%);
@@ -270,7 +274,6 @@
 #footer {
 	background-color: var(--soft-gray);
 	padding: 3rem 0;
-	margin-top: 3rem;
 }
 
 #footer .content {
@@ -396,13 +399,16 @@
 
 #cart .cart-header button {
 	position: absolute;
-	left: 0;
-	color: var(--bright-red);
+	right: 0.5rem;
 	font-size: 1.2rem;
+	color: var(--dark-teal);
+	opacity: 0.3;
 }
 
 #cart .cart-header button:hover {
 	transform: scale(1.1);
+	color: var(--bright-red);
+	opacity: 1;
 }
 
 #cart .cart-header h5 {
@@ -460,6 +466,8 @@
 .cart-item .item-info {
 	display: flex;
 	align-items: flex-end;
+	justify-content: space-between;
+	width: 100%;
 	gap: 0.5rem;
 }
 

@@ -2,7 +2,7 @@
   <div id="cart">
     <div class="cart-header">
       <button type="button" id="hide-cart">
-        <i class="fa-solid fa-angles-right"></i>
+        <i class="fa-solid fa-x"></i>
       </button>
       <h5>My order</h5>
     </div>
@@ -14,7 +14,7 @@
 
     <div class="total">
       <p>Total amount</p>
-      <p>$ <span></span></p>
+      <p><span></span></p>
     </div>
 
     <a href="/checkout" class="btn btn-primary">Checkout</a>
