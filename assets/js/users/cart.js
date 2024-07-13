@@ -1,8 +1,17 @@
 const cartQuantity = document.querySelector('#show-cart span');
+const cartTotal = document.querySelector('#cart .total span');
 const innerCart = document.querySelector('#cart .items-list');
 
 const items = JSON.parse(sessionStorage.getItem('items'));
 const cartItems = JSON.parse(sessionStorage.getItem('cartItems') || '[]');
+
+const updateCartTotal = (cartItems) => {
+	const total = cartItems.reduce((total, dish) => {
+		return (total += dish.quantity * dish.price);
+	}, 0);
+
+	return total;
+};
 
 const removeItem = (event) => {
 	const dishId = parseInt(event.target.dataset.id);
@@ -86,6 +95,9 @@ const updateCart = (cartItems) => {
 	} else {
 		cartQuantity.innerHTML = cartItems.length;
 	}
+
+	cartTotal.innerHTML = updateCartTotal(cartItems);
+
 	sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
 };
 

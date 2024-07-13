@@ -14,7 +14,7 @@
 
     <div class="total">
       <p>Total amount</p>
-      <p>$ 12.58</p>
+      <p>$ <span></span></p>
     </div>
 
     <a href="#" class="btn btn-primary">Checkout</a>
