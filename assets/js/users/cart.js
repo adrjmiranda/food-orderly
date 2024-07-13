@@ -1,4 +1,4 @@
-const cartIcon = document.querySelector('#show-cart');
+const cartQuantity = document.querySelector('#show-cart span');
 const innerCart = document.querySelector('#cart .items-list');
 
 const items = JSON.parse(sessionStorage.getItem('items'));
@@ -81,6 +81,11 @@ const updateCart = (cartItems) => {
 		innerCart.appendChild(card);
 	});
 
+	if (cartItems.length === 0) {
+		cartQuantity.style.display = 'none';
+	} else {
+		cartQuantity.innerHTML = cartItems.length;
+	}
 	sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
 };
 

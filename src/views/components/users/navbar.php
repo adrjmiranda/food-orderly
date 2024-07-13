@@ -18,7 +18,7 @@
           <li>
             <button type="button" id="show-cart">
               <i class="fa-solid fa-cart-shopping"></i>
-              <span>1</span>
+              <span></span>
             </button>
           </li>
 
