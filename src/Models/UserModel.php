@@ -13,6 +13,7 @@ class UserModel extends Model
   public string $password;
   public ?string $street;
   public ?string $number;
+  public ?string $neighborhood;
   public ?string $complement;
   public ?string $name_on_credit_card;
   public ?string $person_code;

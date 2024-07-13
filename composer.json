@@ -3,7 +3,8 @@
 	"description": "A simple application for managing food orders. This project is part of my developer portfolio.",
 	"type": "project",
 	"require": {
-		"vlucas/phpdotenv": "^5.6"
+		"vlucas/phpdotenv": "^5.6",
+		"stripe/stripe-php": "^15.2"
 	},
 	"license": "MIT License",
 	"autoload": {

@@ -17,6 +17,6 @@
       <p>$ <span></span></p>
     </div>
 
-    <a href="#" class="btn btn-primary">Checkout</a>
+    <a href="/checkout" class="btn btn-primary">Checkout</a>
   </div>
 </div>

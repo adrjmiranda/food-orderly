@@ -1,3 +1,4 @@
+const cartIcon = document.querySelector('#show-cart');
 const cartQuantity = document.querySelector('#show-cart span');
 const cartTotal = document.querySelector('#cart .total span');
 const innerCart = document.querySelector('#cart .items-list');
@@ -91,7 +92,7 @@ const updateCart = (cartItems) => {
 	});
 
 	if (cartItems.length === 0) {
-		cartQuantity.style.display = 'none';
+		cartIcon.style.display = 'none';
 	} else {
 		cartQuantity.innerHTML = cartItems.length;
 	}
