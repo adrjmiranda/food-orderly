@@ -511,6 +511,10 @@
 	font-size: 0.9rem;
 }
 
+.cart-item .remove-item i {
+	pointer-events: none;
+}
+
 .cart-item .remove-item:hover {
 	color: var(--bright-red);
 	transform: scale(1.1);

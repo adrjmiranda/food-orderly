@@ -2,7 +2,18 @@ const cartIcon = document.querySelector('#show-cart');
 const innerCart = document.querySelector('#cart .items-list');
 
 const items = JSON.parse(sessionStorage.getItem('items'));
-const cartItems = [];
+const cartItems = JSON.parse(sessionStorage.getItem('cartItems') || '[]');
+
+const removeItem = (event) => {
+	const dishId = parseInt(event.target.dataset.id);
+	const indexToRemove = cartItems.findIndex((item) => item.id === dishId);
+
+	if (indexToRemove !== -1) {
+		cartItems.splice(indexToRemove, 1);
+	}
+
+	updateCart(cartItems);
+};
 
 const removeOne = (event) => {
 	const dishId = parseInt(event.target.dataset.id);
@@ -61,7 +72,7 @@ const updateCart = (cartItems) => {
           <span class="price">$ ${item.price}</span>
         </div>
 
-        <button type="button" class="remove-item">
+        <button type="button" data-id="${item.id}" onclick="removeItem(event)" class="remove-item">
           <i class="fa-regular fa-trash-can"></i>
         </button>
       </div>
@@ -69,6 +80,8 @@ const updateCart = (cartItems) => {
 
 		innerCart.appendChild(card);
 	});
+
+	sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
 };
 
 const addToCart = (event) => {
@@ -87,3 +100,5 @@ const addToCart = (event) => {
 
 	updateCart(cartItems);
 };
+
+updateCart(cartItems);
