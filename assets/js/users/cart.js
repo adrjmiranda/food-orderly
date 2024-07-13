@@ -1,6 +1,9 @@
 const items = JSON.parse(sessionStorage.getItem('items'));
 const cartItems = [];
 
+// TODO: update cart in HTML
+const updateCart = (cartItems) => {};
+
 const addToCart = (event) => {
 	const dishId = parseInt(event.target.dataset.id);
 	const dishItem = items.find((item) => item.id === dishId);
@@ -14,6 +17,4 @@ const addToCart = (event) => {
 			cartItems.push({ ...dishItem, quantity: 1 });
 		}
 	}
-
-	console.log(cartItems);
 };

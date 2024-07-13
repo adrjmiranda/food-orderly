@@ -17,11 +17,14 @@
         <ul class="register-login">
           <?php if (isset($_SESSION["user"]["id"])): ?>
             <li>
-              <button type="button" id="show-cart"><i class="fa-solid fa-bag-shopping"></i></button>
+              <button type="button" id="show-cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>1</span>
+              </button>
             </li>
 
             <li>
-              <a href="#" id="profile-data"><i class="fa-regular fa-user"></i></a>
+              <a href="#" id="your-orders">Your orders</a>
             </li>
 
             <li>

@@ -47,21 +47,40 @@
 	text-transform: capitalize;
 }
 
-#show-cart,
-#profile-data {
+#show-cart {
 	font-size: 1.2rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	padding: 0.5rem;
 	border-radius: var(--larger-br);
-	box-shadow: var(--light-shadow);
-	background-color: var(--soft-gray);
+	position: relative;
 }
 
-#show-cart:hover,
-#profile-data:hover {
+#show-cart span {
+	position: absolute;
+	top: -0.5rem;
+	left: -0.3rem;
+	color: var(--white);
+	background-color: var(--teal);
+	font-size: 0.7rem;
+	border-radius: 50%;
+	padding: 0.2rem 0.5rem;
+}
+
+#show-cart:hover i {
 	transform: scale(1.1);
+	color: var(--burnt-orange);
+}
+
+#your-orders {
+	font-weight: 500;
+	text-transform: capitalize;
+	color: var(--dark-teal);
+}
+
+#your-orders:hover {
+	font-weight: 600;
 }
 
 /* Main Banner */

@@ -5,7 +5,7 @@ const categoryButtons = document.querySelectorAll('.category-button');
 const listContainer = document.querySelector('#dish-list .content');
 
 // TODO: in development
-const apiUrl = 'http://localhost:8000/api/v1';
+const apiUrl = `${baseUrl}/api/v1`;
 
 const getAllDishes = async (limit = '') => {
 	try {
